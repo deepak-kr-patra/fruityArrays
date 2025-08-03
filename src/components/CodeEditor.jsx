@@ -8,20 +8,29 @@ const CodeEditor = ({ onRun }) => {
     };
 
     return (
-        <div>
-            <textarea
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                className="w-full h-40 bg-white p-2 border rounded resize-none"
-                rows={3}
-            />
-            <button
-                onClick={handleRun}
-                className="mt-2 px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
+        <section>
+            <p
+                id="levelInfo"
+                className="my-4"
             >
-                Run Code
-            </button>
-        </div>
+                Use push method to add 🥭 to the fruits array.
+            </p>
+            <div>
+                <textarea
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)}
+                    className="w-full h-40 bg-white p-2 border rounded resize-none"
+                    rows={3}
+                />
+                <button
+                    onClick={handleRun}
+                    className="mt-2 px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
+                >
+                    Run Code
+                </button>
+            </div>
+
+        </section>
     );
 }
 

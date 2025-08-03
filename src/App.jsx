@@ -1,3 +1,4 @@
+import './App.css'
 import { useState } from 'react'
 import CodeEditor from './components/CodeEditor';
 import FruitVisualizer from './components/FruitVisualizer';
@@ -11,7 +12,7 @@ function App() {
 
   const runUserCode = (code) => {
     try {
-      const tempFruits = [...defaultFruits];
+      const tempFruits = [...fruits];
       const userFunc = new Function('fruits', code);
       userFunc(tempFruits);
       setFruits(tempFruits);
@@ -22,11 +23,11 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 p-4vv gap-4">
+    <div className="flex h-screen bg-blue-50 p-4vv gap-4">
       <div className="w-1/2 p-4">
         <div className='flex justify-between items-center'>
-          <h2 className='text-2xl font-extrabold p-4'>Array Ally</h2>
-          <div className='font-bold h-6 p-4 flex justify-center items-center'>
+          <h2 className='text-2xl font-extrabold'>Array Ally</h2>
+          <div className='font-bold h-6 flex justify-center items-center'>
             <span className='bg-gray-300 h-6 flex justify-center items-center px-2'><BiSolidLeftArrow /></span>
             <p className='bg-gray-400 h-6 px-2'>Level 1 of 10</p>
             <span className='bg-gray-300 h-6 flex justify-center items-center px-2'><BiSolidRightArrow /></span>
