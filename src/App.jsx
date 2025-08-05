@@ -9,6 +9,17 @@ const defaultFruits = ['🍎', '🍌', '🍇', '🍓', '🍍'];
 function App() {
   const [fruits, setFruits] = useState([...defaultFruits]);
   const [error, setError] = useState('');
+  const [result, setResult] = useState('');
+
+  const checkOutput = (fruits) => {
+    const expectedFruitsArray = [...defaultFruits, "🥭"];
+    
+    if(JSON.stringify(expectedFruitsArray) === JSON.stringify(fruits)) {
+      setResult("Well done!");
+    } else {
+      setResult("Nope! try Again.");
+    }
+  }
 
   const runUserCode = (code) => {
     try {
@@ -16,10 +27,17 @@ function App() {
       const userFunc = new Function('fruits', code);
       userFunc(tempFruits);
       setFruits(tempFruits);
+      checkOutput(tempFruits);
       setError('');
     } catch (e) {
       setError(e.message);
     }
+  };
+
+  const resetFruitsArray = () => {
+    setFruits(defaultFruits);
+    setError('');
+    setResult('');
   };
 
   return (
@@ -33,8 +51,9 @@ function App() {
             <span className='bg-gray-300 h-6 flex justify-center items-center px-2'><BiSolidRightArrow /></span>
           </div>
         </div>
-        <CodeEditor onRun={runUserCode} />
+        <CodeEditor onRun={runUserCode} onReset={resetFruitsArray} fruits={defaultFruits} />
         {error && <p className="text-red-500 mt-2">{error}</p>}
+        {result && <p className="text-red-500 mt-2">{result}</p>}
       </div>
       <div className="w-1/2 flex justify-center">
         <FruitVisualizer fruits={fruits} />
