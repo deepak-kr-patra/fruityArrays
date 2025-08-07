@@ -1,6 +1,6 @@
 import useLevel from "../zustand/useLevel";
 
-const FruitVisualizer = ({}) => {
+const FruitVisualizer = () => {
     const { fruits } = useLevel();
 
     return (
@@ -8,7 +8,7 @@ const FruitVisualizer = ({}) => {
             {fruits.map((fruit, idx) => (
                 <div
                     key={idx}
-                    className="h-max text-3xl p-3 bg-yellow-100 rounded border border-yellow-400"
+                    className="h-max text-3xl p-2 bg-yellow-100 rounded border border-yellow-400"
                 >
                     {fruit}
                 </div>

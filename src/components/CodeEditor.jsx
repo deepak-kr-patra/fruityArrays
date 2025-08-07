@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getLevelInfo } from "../utils/levelsInfo";
 import useLevel from "../zustand/useLevel";
 
-const CodeEditor = ({ checkOutput, onReset }) => {
+const CodeEditor = () => {
 
     const { level, setLevel, fruits, setFruits } = useLevel();
-    const levelInfo = getLevelInfo(level);
-    setFruits(levelInfo.defaultFruits);
+    let levelInfo = getLevelInfo(level);
+
+    useEffect(() => {
+        setFruits(levelInfo.defaultFruits);
+    }, [level]);
+
+    const [error, setError] = useState('');
+    const [result, setResult] = useState('');
+
+    const checkOutput = (fruits) => {
+        const expectedFruitsArray = levelInfo.expectedFruits;
+
+        if (JSON.stringify(expectedFruitsArray) === JSON.stringify(fruits)) {
+            setResult("Well done!");
+        } else {
+            setResult("Nope! try Again.");
+        }
+    };
 
     const [code, setCode] = useState('fruits.push("🥭")');
 
@@ -29,12 +45,13 @@ const CodeEditor = ({ checkOutput, onReset }) => {
     const handleReset = () => {
         setCode('fruits.push("🥭")');
         setFruits(levelInfo.defaultFruits);
-        onReset();
+        setError('');
+        setResult('');
     };
 
     const handleNext = () => {
         setLevel(level + 1);
-    }
+    };
 
     return (
         <section>
@@ -71,7 +88,7 @@ const CodeEditor = ({ checkOutput, onReset }) => {
                 <textarea
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
-                    className="w-full h-40 bg-white p-2 border rounded resize-none"
+                    className="w-full h-40 bg-white p-2 border border-dashedxx rounded resize-none"
                     spellCheck={false}
                     rows={3}
                 />
@@ -97,6 +114,8 @@ const CodeEditor = ({ checkOutput, onReset }) => {
                 </div>
             </div>
 
+            {error && <p className="text-red-500 mt-2">{error}</p>}
+            {result && <p className="text-red-500 mt-2">{result}</p>}
         </section>
     );
 }
