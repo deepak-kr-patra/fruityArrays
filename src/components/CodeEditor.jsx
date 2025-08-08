@@ -9,8 +9,10 @@ const CodeEditor = () => {
 
     useEffect(() => {
         setFruits(levelInfo.defaultFruits);
+        setCode('fruits.push("🥭")');
     }, [level]);
 
+    const [code, setCode] = useState('fruits.push("🥭")');
     const [error, setError] = useState('');
     const [result, setResult] = useState('');
 
@@ -24,12 +26,7 @@ const CodeEditor = () => {
         }
     };
 
-    const [code, setCode] = useState('fruits.push("🥭")');
-
-    const handleRun = () => {
-        runUserCode(code);
-    };
-    const runUserCode = (code) => {
+    const runUserCode = () => {
         try {
             const tempFruits = [...fruits];
             const userFunc = new Function('fruits', code);
@@ -51,6 +48,8 @@ const CodeEditor = () => {
 
     const handleNext = () => {
         setLevel(level + 1);
+        setError('');
+        setResult('');
     };
 
     return (
@@ -94,7 +93,7 @@ const CodeEditor = () => {
                 />
                 <div id="buttonsDiv" className="flex justify-end items-center gap-2">
                     <button
-                        onClick={handleRun}
+                        onClick={runUserCode}
                         className="mt-2 px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
                     >
                         Run Code
