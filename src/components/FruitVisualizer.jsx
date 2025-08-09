@@ -10,7 +10,7 @@ const FruitVisualizer = () => {
                     key={idx}
                     className="h-max text-3xl p-2 bg-yellow-100 rounded border border-yellow-400"
                 >
-                    {fruit}
+                    {fruit ? fruit : "❓"}
                 </div>
             ))}
         </div>
