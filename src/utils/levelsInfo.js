@@ -23,6 +23,18 @@ const levelsInfo = [
         expectedFruits: ['🍌', '🍇', '🍓', '🍍', '🥭'],
         levelDescription: 'Use shift method to remove "🍎" from the left of fruits array.'
     },
+    // level 5 info at index 4
+    {
+        defaultFruits: ['🍍', '🍋', '🍇', '🍓', '🥭'],
+        expectedFruits: ['🍋', '🍇', '🍓', '🥭', '🍎'],
+        levelDescription: 'Use combination of two methods to get the expected fruits array.'
+    },
+    // level 6 info at index 5
+    {
+        defaultFruits: ['🍇', '🍋', '🍎', '🍓', '🍍'],
+        expectedFruits: ['🥭', '🍌', '🍇', '🍋', '🍎', '🍓'],
+        levelDescription: 'Use combination of methods to get the desired fruits array.'
+    },
 ];
 
 export const getLevelInfo = (level) => {
