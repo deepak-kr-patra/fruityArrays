@@ -4,7 +4,7 @@ const FruitVisualizer = () => {
     const { fruits } = useLevel();
 
     return (
-        <div className="w-full flex flex-wrap justify-center gap-2 bg-white p-4 rounded shadow min-h-[100px] h-full">
+        <div className="fruitsSection w-full flex flex-wrap justify-center gap-2 bg-white p-4 rounded shadow min-h-[100px] h-full">
             {fruits.map((fruit, idx) => (
                 <div
                     key={idx}
