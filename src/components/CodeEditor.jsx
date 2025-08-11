@@ -14,7 +14,7 @@ const CodeEditor = () => {
         setCode('');
         textareaRef.current?.focus();
     }, [level]);
-    
+
     const textareaRef = useRef();
     useEffect(() => {
         textareaRef.current?.focus();
@@ -25,9 +25,7 @@ const CodeEditor = () => {
     const [result, setResult] = useState('');
 
     const checkOutput = (fruits) => {
-        const expectedFruitsArray = levelInfo.expectedFruits;
-
-        if (JSON.stringify(expectedFruitsArray) === JSON.stringify(fruits)) {
+        if (JSON.stringify(levelInfo.expectedFruits) === JSON.stringify(fruits)) {
             setResult("Well done!");
             toast.success("Well done!");
         } else {
