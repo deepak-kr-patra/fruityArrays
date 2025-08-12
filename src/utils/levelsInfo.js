@@ -1,15 +1,15 @@
 const levelsInfo = [
     // level 1 info at index 0
     {
-        defaultFruits: ['🍎', '🍌', '🍇', '🍓', '🍍'],
-        expectedFruits: ['🍎', '🍌', '🍇', '🍓', '🍍', '🥭'],
+        defaultFruits: ['🍎', '🍌', '🍓', '🍍', '🍇'],
+        expectedFruits: ['🍎', '🍌', '🍓', '🍍', '🍇', '🥭'],
         maxLines: 1,
         levelDescription: 'Use push method to add "🥭" emoji(which is basically a string) to the fruits array.'
     },
     // level 2 info at index 1
     {
-        defaultFruits: ['🍎', '🍌', '🍇', '🍓', '🍍', '🥭'],
-        expectedFruits: ['🍎', '🍌', '🍇', '🍓', '🍍'],
+        defaultFruits: ['🍐', '🍌', '🍇', '🍓', '🍍', '🥭'],
+        expectedFruits: ['🍐', '🍌', '🍇', '🍓', '🍍'],
         maxLines: 1,
         levelDescription: 'Use pop method to remove "🥭" from the fruits array.'
     },
