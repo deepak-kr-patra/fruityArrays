@@ -1,6 +1,4 @@
 .fruitsSection {
-  /* background-color: #faf7f2;
-  background-color: #f9f3e7; */
   background-color: #4c91a5;
   background-image:
     linear-gradient(0deg, rgba(200, 170, 120, 0.18) 1px, transparent 1px),
@@ -12,14 +10,17 @@
 }
 
 .animateArray {
-  animation: animate 1s ease 1;
+  animation: animate 0.4s ease-out;
 }
 
 @keyframes animate {
-  from {
-    transform: scale(0);
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
   }
-  to {
+
+  100% {
     transform: scale(1);
+    opacity: 1;
   }
 }
