@@ -9,11 +9,11 @@
   border: 1px solid rgba(200, 170, 120, 0.3);
 }
 
-.animateArray {
-  animation: animate 0.4s ease-out;
+.animateFruit {
+  animation: popIn 0.4s ease-out;
 }
 
-@keyframes animate {
+@keyframes popIn {
   0% {
     transform: scale(0.5);
     opacity: 0;
@@ -21,6 +21,22 @@
 
   100% {
     transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animateArray {
+  animation: dropDown 0.4s ease-out;
+}
+
+@keyframes dropDown {
+  0% {
+    transform: scale(0.5) translateY(-250px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
     opacity: 1;
   }
 }
