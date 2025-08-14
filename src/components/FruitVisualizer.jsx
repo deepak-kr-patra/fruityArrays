@@ -2,27 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import useLevel from "../zustand/useLevel";
 
 
-const ANIM_CLEAR_MS = 450; // make slightly longer than CSS animation
+const ANIM_CLEAR_MS = 450; // slightly longer than CSS animation
 
 const FruitVisualizer = () => {
 
-    const { fruits, level } = useLevel();
+    const { fruits, level, resetUsed, setResetUsed } = useLevel();
 
-    // to not load anything until fruits array is having actual items
+    // to not render any array until fruits array is non-empty
     const [isReady, setIsReady] = useState(false);
-
-    useEffect(() => {
-        if (fruits.length > 0) setIsReady(true);
-    }, [fruits]);
 
     // refs to hold previous values (persist across renders without causing rerenders)
     const prevFruitsRef = useRef([]);
     const prevLevelRef = useRef();
 
-    // per-index flags: true => add `.animateArray` to that element
-    const [animFlags, setAnimFlags] = useState(() => fruits.map(() => "animateArray"));
+    // add 'newLevelAnimation' to every element initially
+    const [animFlags, setAnimFlags] = useState(() => fruits.map(() => "newLevelAnimation"));
 
     useEffect(() => {
+        if (fruits.length > 0) setIsReady(true);
+
         const prevFruits = prevFruitsRef.current;
         const prevLevel = prevLevelRef.current;
 
@@ -32,30 +30,27 @@ const FruitVisualizer = () => {
         let newAnimFlags;
 
         if (levelChanged || filledFromEmpty) {
-            // const levelInfo = getLevelInfo(level);
-            // console.log("level changed to: " + level);
-            // setFruits(levelInfo.defaultFruits);
-            // console.log("fruits: " + fruits.toString());
-
-            // // first mount or new level -> animate everything
-            // newAnimFlags = levelInfo.defaultFruits.map(() => "animateArray");
-
-            newAnimFlags = fruits.map(() => "animateArray");
+            newAnimFlags = fruits.map(() => "newLevelAnimation");
         } else {
-            // Build counts of previous occurrences
-            const prevCounts = {};
-            prevFruits.forEach((f) => (prevCounts[f] = (prevCounts[f] || 0) + 1));
+            if (resetUsed) {
+                newAnimFlags = fruits.map(() => "");
+                setResetUsed(false);
+            } else {
+                // Build counts of previous occurrences
+                const prevCounts = {};
+                prevFruits.forEach((f) => (prevCounts[f] = (prevCounts[f] || 0) + 1));
 
-            // consumed counts as we iterate current fruits
-            const consumed = {};
-            newAnimFlags = fruits.map((f) => {
-                const prevCount = prevCounts[f] || 0;
-                const seen = consumed[f] || 0;
-                consumed[f] = seen + 1;
-                // If we've already matched all prev occurrences of this value,
-                // this current occurrence is an extra (i.e. new)
-                return consumed[f] > prevCount ? "animateFruit" : "";
-            });
+                // consumed counts as we iterate current fruits
+                const consumed = {};
+                newAnimFlags = fruits.map((f) => {
+                    const prevCount = prevCounts[f] || 0;
+                    const seen = consumed[f] || 0;
+                    consumed[f] = seen + 1;
+                    // If we've already matched all prev occurrences of this value,
+                    // then this current occurrence is an extra (i.e. new one)
+                    return consumed[f] > prevCount ? "newFruitAnimation" : "";
+                });
+            }
         }
 
         // Apply flags so render adds the class to newly changed indices
@@ -69,19 +64,16 @@ const FruitVisualizer = () => {
             }, ANIM_CLEAR_MS);
         }
 
-        // update prev refs AFTER computing animation flags
+        // update prev refs after computing animation flags
         prevFruitsRef.current = fruits;
         prevLevelRef.current = level;
 
         return () => clearTimeout(t);
     }, [fruits]);
 
-    // do not return anything to render until fruits array is non-empty
-    if (!isReady) return null;
-
     return (
         <div className="fruitsSection w-full flex flex-wrap justify-center gap-2 bg-white p-4 rounded shadow min-h-[100px] h-full">
-            {fruits.map((fruit, idx) => {
+            {isReady && fruits.map((fruit, idx) => {
                 return <div
                     key={`${level}-${idx}`}
                     className={`${animFlags[idx]} h-max text-3xl p-2 bg-yellow-100 rounded border border-yellow-400`}
