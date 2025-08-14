@@ -6,12 +6,12 @@ import toast from 'react-hot-toast';
 
 const CodeEditor = () => {
 
-    const { level, setLevel, fruits, setFruits } = useLevel();
+    const { level, setLevel, fruits, setFruits, setResetUsed } = useLevel();
     let levelInfo = getLevelInfo(level);
 
     useEffect(() => {
         setFruits(levelInfo.defaultFruits);
-        setCode('');
+        setCode(levelInfo.defaultCode);
         textareaRef.current?.focus();
     }, [level]);
 
@@ -36,9 +36,12 @@ const CodeEditor = () => {
 
     const runUserCode = () => {
         try {
-            const tempFruits = [...fruits];
-            const userFunc = new Function('fruits', code);
-            userFunc(tempFruits);
+            let tempFruits = [...fruits];
+            const userFunc = new Function('fruits', `
+                ${code}
+                return fruits
+            `);
+            tempFruits = userFunc(tempFruits);
             setFruits(tempFruits);
             checkOutput(tempFruits);
             setError('');
@@ -48,10 +51,11 @@ const CodeEditor = () => {
     };
 
     const handleReset = () => {
-        setCode('');
+        setCode(levelInfo.defaultCode);
         setFruits(levelInfo.defaultFruits);
         setError('');
         setResult('');
+        setResetUsed(true);
     };
 
     const handleNext = () => {
@@ -62,29 +66,31 @@ const CodeEditor = () => {
 
     return (
         <section>
-            <p id="levelDesc" className="my-4">
-                {levelInfo.levelDescription}
-            </p>
-            <div id="originalArray" className="my-4 w-full flex flex-col gap-1">
+            <div className="mt-4 flex flex-col gap-4">
+                {levelInfo.levelDescription.map(text =>
+                    <p className="levelDesc">{text}</p>
+                )}
+            </div>
+            <div id="originalArray" className="my-4 w-full flex flex-col font-serif">
                 <p className="font-semibold">Initial Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.defaultFruits.map((fruit, idx) => (
                         <div
                             key={idx}
-                            className="h-max text-3xl p-1 bg-yellow-100 rounded border border-yellow-400"
+                            className="h-max text-2xl p-1 bg-yellow-100 rounded border border-yellow-400"
                         >
                             {fruit}
                         </div>
                     ))}
                 </div>
             </div>
-            <div id="expectedArray" className="my-4 w-full flex flex-col gap-1">
+            <div id="expectedArray" className="my-4 w-full flex flex-col font-serif">
                 <p className="font-semibold">Expected Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.expectedFruits.map((fruit, idx) => (
                         <div
                             key={idx}
-                            className="h-max text-3xl p-1 bg-yellow-100 rounded border border-yellow-400"
+                            className="h-max text-2xl p-1 bg-yellow-100 rounded border border-yellow-400"
                         >
                             {fruit}
                         </div>
@@ -92,39 +98,39 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="mt-8">
-                <div className="rounded h-52 flex flex-col p-2 px-4 bg-gray-200 border-black border-2 font-mono">
-                    <p className="px-2 pt-1">
+                <div className="rounded h-44 flex flex-col p-2 px-4 bg-gray-200 border-black border-2 font-mono">
+                    <p className="p-1">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
                     <textarea
                         ref={textareaRef}
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        className="w-full px-2 py-1 outline-none resize-none bg-white"
+                        className="w-full p-1 outline-none resize-none bg-white"
                         spellCheck={false}
                         rows={levelInfo.maxLines}
                     />
-                    <p className="px-2 py-1">
+                    <p className="p-1">
                         fruits.displayInPanel();
                     </p>
                 </div>
                 <div id="buttonsDiv" className="mt-2 flex justify-end items-center gap-2">
                     <button
                         onClick={runUserCode}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
+                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
                     >
                         Run Code
                     </button>
                     <button
                         onClick={handleReset}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
+                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
                     >
                         Reset
                     </button>
                     <button
                         onClick={handleNext}
-                        className={`px-4 py-2 ${result !== "Well done!" ? "bg-blue-300" : "bg-blue-600 cursor-pointer hover:bg-blue-700"} text-white rounded`}
-                        disabled={result !== "Well done!"}
+                        className={`px-3 py-1.5 ${result !== "Well done!" ? "bg-blue-300" : "bg-blue-600 cursor-pointer hover:bg-blue-700"} text-white rounded`}
+                    // disabled={result !== "Well done!"}
                     >
                         Next
                     </button>
