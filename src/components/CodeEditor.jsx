@@ -11,7 +11,7 @@ const CodeEditor = () => {
 
     useEffect(() => {
         setFruits(levelInfo.defaultFruits);
-        setCode(levelInfo.defaultCode);
+        setCode('');
         textareaRef.current?.focus();
     }, [level]);
 
@@ -51,7 +51,7 @@ const CodeEditor = () => {
     };
 
     const handleReset = () => {
-        setCode(levelInfo.defaultCode);
+        setCode('');
         setFruits(levelInfo.defaultFruits);
         setError('');
         setResult('');
@@ -64,14 +64,64 @@ const CodeEditor = () => {
         setResult('');
     };
 
+    const keyDownValidation = (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const { selectionStart, selectionEnd } = e.target;
+            const newValue = code.substring(0, selectionStart) + "    " + code.substring(selectionEnd);
+            setCode(newValue);
+
+            // Move the cursor after inserted spaces
+            requestAnimationFrame(() => {
+                e.target.selectionStart = e.target.selectionEnd = selectionStart + 4;
+            });
+        } else if (e.key === 'Enter') {
+            const currentLineCount = code.split('\n').length;
+
+            if (currentLineCount >= levelInfo.maxLines) {
+                e.preventDefault();
+                return;
+            }
+        } else if (e.key === '{' || e.key === '(' || e.key === '[' || e.key === '"' || e.key === "'") {
+            e.preventDefault();
+            const { selectionStart, selectionEnd } = e.target;
+            let autoCompletedStr;
+            switch (e.key) {
+                case '{':
+                    autoCompletedStr = "{}";
+                    break;
+                case '(':
+                    autoCompletedStr = "()";
+                    break;
+                case '[':
+                    autoCompletedStr = "[]";
+                    break;
+                case '"':
+                    autoCompletedStr = '""';
+                    break;
+                case "'":
+                    autoCompletedStr = "''";
+                    break;
+                default:
+                    break;
+            }
+            const newValue = code.substring(0, selectionStart) + autoCompletedStr + code.substring(selectionEnd);
+            setCode(newValue);
+
+            requestAnimationFrame(() => {
+                e.target.selectionStart = e.target.selectionEnd = selectionStart + 1;
+            });
+        }
+    };
+
     return (
         <section>
             <div className="mt-4 flex flex-col gap-4">
-                {levelInfo.levelDescription.map(text =>
-                    <p className="levelDesc">{text}</p>
+                {levelInfo.levelDescription.map((text, idx) =>
+                    <p key={idx} className="levelDesc">{text}</p>
                 )}
             </div>
-            <div id="originalArray" className="my-4 w-full flex flex-col font-serif">
+            <div className="my-4 w-full flex flex-col font-serif">
                 <p className="font-semibold">Initial Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.defaultFruits.map((fruit, idx) => (
@@ -84,7 +134,7 @@ const CodeEditor = () => {
                     ))}
                 </div>
             </div>
-            <div id="expectedArray" className="my-4 w-full flex flex-col font-serif">
+            <div className="my-4 w-full flex flex-col font-serif">
                 <p className="font-semibold">Expected Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.expectedFruits.map((fruit, idx) => (
@@ -106,6 +156,7 @@ const CodeEditor = () => {
                         ref={textareaRef}
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
+                        onKeyDown={(e) => keyDownValidation(e)}
                         className="w-full p-1 outline-none resize-none bg-white"
                         spellCheck={false}
                         rows={levelInfo.maxLines}
@@ -114,7 +165,7 @@ const CodeEditor = () => {
                         fruits.displayInPanel();
                     </p>
                 </div>
-                <div id="buttonsDiv" className="mt-2 flex justify-end items-center gap-2">
+                <div className="mt-2 flex justify-end items-center gap-2">
                     <button
                         onClick={runUserCode}
                         className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
@@ -137,7 +188,7 @@ const CodeEditor = () => {
                 </div>
             </div>
 
-            {error && <p className="text-red-500 mt-2">{error}</p>}
+            {error && <p className="text-red-500 mt-2 font-mono">{error}</p>}
         </section>
     );
 }
