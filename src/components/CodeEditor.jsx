@@ -82,35 +82,6 @@ const CodeEditor = () => {
                 e.preventDefault();
                 return;
             }
-        } else if (e.key === '{' || e.key === '(' || e.key === '[' || e.key === '"' || e.key === "'") {
-            e.preventDefault();
-            const { selectionStart, selectionEnd } = e.target;
-            let autoCompletedStr;
-            switch (e.key) {
-                case '{':
-                    autoCompletedStr = "{}";
-                    break;
-                case '(':
-                    autoCompletedStr = "()";
-                    break;
-                case '[':
-                    autoCompletedStr = "[]";
-                    break;
-                case '"':
-                    autoCompletedStr = '""';
-                    break;
-                case "'":
-                    autoCompletedStr = "''";
-                    break;
-                default:
-                    break;
-            }
-            const newValue = code.substring(0, selectionStart) + autoCompletedStr + code.substring(selectionEnd);
-            setCode(newValue);
-
-            requestAnimationFrame(() => {
-                e.target.selectionStart = e.target.selectionEnd = selectionStart + 1;
-            });
         }
     };
 
@@ -148,7 +119,7 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="mt-8">
-                <div className="rounded h-44 flex flex-col p-2 px-4 bg-gray-200 border-black border-2 font-mono">
+                <div className="rounded h-44 flex flex-col p-2 px-4 bg-gray-200 border-gray-400 border-2 font-mono">
                     <p className="p-1">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
