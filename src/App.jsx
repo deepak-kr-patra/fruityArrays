@@ -7,7 +7,7 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <div className="flex h-screen bg-blue-100 gap-4">
+    <div className="flex h-screen bg-blue-zzz300 gap-4 wrapper">
       <div className="w-1/2 p-4">
         <div className='flex justify-between items-center'>
           <h2 className='text-2xl font-extrabold'>Array Ally</h2>
