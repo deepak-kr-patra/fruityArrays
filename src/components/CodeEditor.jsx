@@ -6,13 +6,31 @@ import toast from 'react-hot-toast';
 
 const CodeEditor = () => {
 
-    const { level, setLevel, fruits, setFruits, setResetUsed } = useLevel();
+    const {
+        level,
+        setLevel,
+        levelsCompleted,
+        setLevelsCompleted,
+        fruits,
+        setFruits,
+        setResetUsed
+    } = useLevel();
+
     let levelInfo = getLevelInfo(level);
+
+    const [code, setCode] = useState('');
+    const [error, setError] = useState('');
+    const [enableButton, setEnableButton] = useState(false);
 
     useEffect(() => {
         setFruits(levelInfo.defaultFruits);
         setCode('');
         textareaRef.current?.focus();
+
+        setEnableButton(false);
+        if (level <= levelsCompleted) {
+            setEnableButton(true);
+        }
     }, [level]);
 
     const textareaRef = useRef();
@@ -20,16 +38,12 @@ const CodeEditor = () => {
         textareaRef.current?.focus();
     });
 
-    const [code, setCode] = useState('');
-    const [error, setError] = useState('');
-    const [result, setResult] = useState('');
-
     const checkOutput = (fruits) => {
         if (JSON.stringify(levelInfo.expectedFruits) === JSON.stringify(fruits)) {
-            setResult("Well done!");
             toast.success("Well done!");
+            setLevelsCompleted(levelsCompleted + 1);
+            setEnableButton(true);
         } else {
-            setResult("Nope! try Again.");
             toast.error("Nope! try Again.");
         }
     };
@@ -54,14 +68,13 @@ const CodeEditor = () => {
         setCode('');
         setFruits(levelInfo.defaultFruits);
         setError('');
-        setResult('');
         setResetUsed(true);
+        setEnableButton(false);
     };
 
     const handleNext = () => {
         setLevel(level + 1);
         setError('');
-        setResult('');
     };
 
     const keyDownValidation = (e) => {
@@ -119,7 +132,7 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="mt-8">
-                <div className="rounded h-44 flex flex-col p-2 px-4 bg-gray-200 border-gray-400 border-2 font-mono">
+                <div className="rounded h-44 flex flex-col p-2 px-4 bg-gray-200 border-gray-400 border-dashed border-2 font-mono">
                     <p className="p-1">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
@@ -151,8 +164,8 @@ const CodeEditor = () => {
                     </button>
                     <button
                         onClick={handleNext}
-                        className={`px-3 py-1.5 ${result !== "Well done!" ? "bg-blue-300" : "bg-blue-600 cursor-pointer hover:bg-blue-700"} text-white rounded`}
-                    // disabled={result !== "Well done!"}
+                        className={`px-3 py-1.5 ${!enableButton ? "bg-blue-300" : "bg-blue-600 cursor-pointer hover:bg-blue-700"} text-white rounded`}
+                        disabled={!enableButton}
                     >
                         Next
                     </button>

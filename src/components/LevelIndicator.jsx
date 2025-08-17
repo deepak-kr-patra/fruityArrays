@@ -5,6 +5,10 @@ import LevelsModal from "./LevelsModal";
 const LevelIndicator = () => {
     const { level } = useLevel();
 
+    const toggleModal = () => {
+        document.getElementById('levelsModal').classList.toggle('invisible');
+    }
+
     return (
         <div className="relative flex flex-col items-center">
             <div className='font-semibold h-8 flex justify-center items-center cursor-pointer'>
@@ -15,6 +19,7 @@ const LevelIndicator = () => {
                 </span>
                 <p
                     className='bg-blue-400 hover:bg-blue-300 h-8 w-[150px] flex justify-center border-x-1 border-gray-100 items-center p-2'
+                    onClick={toggleModal}
                 >
                     Level {level} of 15
                 </p>
