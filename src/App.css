@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #7bf1a8;
+  /* background-color: #7bf1a8; */
 }
 
 .fruitsSection {
@@ -44,11 +44,11 @@
 
 .levelCircle:hover,
 .active {
-  border: 2px solid #f9fbfa;
+  border: 2px solid #f9fbfb;
 }
 
 .passedLevel {
-  background-color: #5abf80;
+  background-color: #8ec5ff;
 }
 
 /* animations CSS */

@@ -2,12 +2,15 @@ import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import useLevel from "../zustand/useLevel";
 import LevelsModal from "./LevelsModal";
 
+
 const LevelIndicator = () => {
     const { level } = useLevel();
 
     const toggleModal = () => {
+        console.log("from level indicator");
+        
         document.getElementById('levelsModal').classList.toggle('invisible');
-    }
+    };
 
     return (
         <div className="relative flex flex-col items-center">
