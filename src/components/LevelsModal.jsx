@@ -1,7 +1,32 @@
+import { useEffect, useRef } from "react";
 import useLevel from "../zustand/useLevel"
+
+
+const useClickOutside = (ref, callback) => {
+    useEffect(() => {
+        const checkClickPosition = (e) => {
+            if (ref.current && !ref.current.contains(e.target)) {
+                callback();
+            }
+        };
+
+        document.addEventListener('mousedown', checkClickPosition);
+
+        return () => document.removeEventListener('mousedown', checkClickPosition);
+    }, [ref, callback]);
+};
 
 const LevelsModal = () => {
     const { level, setLevel, levelsCompleted } = useLevel();
+
+    const modalRef = useRef(null);
+
+    const handleOutsideClick = () => {
+        console.log("clicked outside");
+        document.getElementById('levelsModal').classList.add('invisible');
+    };
+
+    useClickOutside(modalRef, handleOutsideClick);
 
     const handleLevelChange = (clickedLevel) => {
         if (clickedLevel > levelsCompleted + 1) {
@@ -11,7 +36,7 @@ const LevelsModal = () => {
     };
 
     return (
-        <div id="levelsModal" className="invisible absolute top-[38px] flex flex-col items-center">
+        <div id="levelsModal" ref={modalRef} className="invisible absolute top-[38px] flex flex-col items-center">
             <div className="absolute w-8 h-8 bg-gray-700 rotate-45"></div>
             <div className="absolute top-1.5 bg-gray-700 levelsBox">
                 <div className={`levelCircle ${level === 1 ? "active" : ""} ${levelsCompleted >= 1 ? "passedLevel" : ""}`} onClick={() => handleLevelChange(1)}>1</div>
