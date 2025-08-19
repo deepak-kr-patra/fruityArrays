@@ -115,3 +115,7 @@ const levelsInfo = {
 export const getLevelInfo = (level) => {
     return levelsInfo[level];
 };
+
+export const getTotalLevels = () => {
+    return Object.keys(levelsInfo).length;
+};

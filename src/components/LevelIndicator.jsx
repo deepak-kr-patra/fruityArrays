@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import useLevel from "../zustand/useLevel";
 import LevelsModal from "./LevelsModal";
@@ -6,11 +7,7 @@ import LevelsModal from "./LevelsModal";
 const LevelIndicator = () => {
     const { level } = useLevel();
 
-    const toggleModal = () => {
-        console.log("from level indicator");
-        
-        document.getElementById('levelsModal').classList.toggle('invisible');
-    };
+    const levelRef = useRef(null);
 
     return (
         <div className="relative flex flex-col items-center">
@@ -22,7 +19,7 @@ const LevelIndicator = () => {
                 </span>
                 <p
                     className='bg-blue-400 hover:bg-blue-300 h-8 w-[150px] flex justify-center border-x-1 border-gray-100 items-center p-2'
-                    onClick={toggleModal}
+                    ref={levelRef}
                 >
                     Level {level} of 15
                 </p>
@@ -32,7 +29,7 @@ const LevelIndicator = () => {
                     <BiSolidRightArrow />
                 </span>
             </div>
-            <LevelsModal />
+            <LevelsModal levelRef={levelRef} />
         </div>
     )
 }
