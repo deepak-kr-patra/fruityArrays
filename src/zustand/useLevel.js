@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 
 const useLevel = create((set) => ({
-    level: 1,
+    level: parseInt(localStorage.getItem('level')) || 1,
     setLevel: (level) => set({ level }),
-    levelsCompleted: 0,
+    levelsCompleted: parseInt(localStorage.getItem('levelsCompleted')) || 0,
     setLevelsCompleted: (levelsCompleted) => set({ levelsCompleted }),
     resetUsed: false,
     setResetUsed: (resetUsed) => set({ resetUsed }),

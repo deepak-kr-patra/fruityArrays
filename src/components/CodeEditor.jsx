@@ -15,7 +15,7 @@ const CodeEditor = () => {
         setFruits,
         setResetUsed
     } = useLevel();
-
+    
     let levelInfo = getLevelInfo(level);
 
     const [code, setCode] = useState('');
@@ -30,6 +30,8 @@ const CodeEditor = () => {
         setEnableButton(false);
         if (level <= levelsCompleted) {
             setEnableButton(true);
+        } else {
+            localStorage.setItem('level', level);
         }
     }, [level]);
 
@@ -41,6 +43,7 @@ const CodeEditor = () => {
     const checkOutput = (fruits) => {
         if (JSON.stringify(levelInfo.expectedFruits) === JSON.stringify(fruits)) {
             toast.success("Well done!");
+            localStorage.setItem('levelsCompleted', levelsCompleted + 1);
             setLevelsCompleted(levelsCompleted + 1);
             setEnableButton(true);
         } else {
