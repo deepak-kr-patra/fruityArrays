@@ -4,8 +4,8 @@ import { getTotalLevels } from "../utils/levelsInfo";
 
 
 const LevelsModal = ({ levelRef }) => {
-    const { level, setLevel, levelsCompleted } = useLevel();
-    const totalLevsls = getTotalLevels();
+    const { level, setLevel, levelsCompleted, setLevelsCompleted } = useLevel();
+    const totalLevels = getTotalLevels();
 
     const modalRef = useRef(null);
 
@@ -44,19 +44,31 @@ const LevelsModal = ({ levelRef }) => {
         levelsModal.classList.add('invisible');
     };
 
+    const resetLevel = () => {
+        setLevel(1);
+        localStorage.setItem('level', 1);
+        setLevelsCompleted(0);
+        localStorage.setItem('levelsCompleted', 0);
+        const levelsModal = document.getElementById('levelsModal');
+        levelsModal.classList.add('invisible');
+    };
+
     return (
         <div id="levelsModal" ref={modalRef} className="invisible absolute top-[38px] flex flex-col items-center">
             <div className="absolute w-8 h-8 bg-gray-700 rotate-45"></div>
-            <div className="absolute top-1.5 bg-gray-700 levelsBox">
-                {Array.from({ length: totalLevsls }, (_, index) => index + 1).map((lev, idx) =>
-                    <div
-                        key={idx}
-                        className={`levelCircle ${level === lev ? "active" : ""} ${levelsCompleted >= lev ? "passedLevel" : ""}`}
-                        onClick={() => handleLevelChange(lev)}
-                    >
-                        {lev}
-                    </div>
-                )}
+            <div className="absolute top-1.5 bg-gray-700 rounded-sm flex flex-col items-center gap-2 p-3 pb-2">
+                <div className="levelsBox">
+                    {Array.from({ length: totalLevels }, (_, index) => index + 1).map((lev, idx) =>
+                        <div
+                            key={idx}
+                            className={`levelCircle ${level === lev ? "active" : ""} ${levelsCompleted >= lev ? "passedLevel" : ""}`}
+                            onClick={() => handleLevelChange(lev)}
+                        >
+                            {lev}
+                        </div>
+                    )}
+                </div>
+                <button className="text-white hover:text-[#eeeeee] cursor-pointer" onClick={resetLevel}>Reset</button>
             </div>
         </div>
     )
