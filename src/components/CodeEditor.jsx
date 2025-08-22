@@ -15,7 +15,7 @@ const CodeEditor = () => {
         setFruits,
         setResetUsed
     } = useLevel();
-    
+
     let levelInfo = getLevelInfo(level);
 
     const [code, setCode] = useState('');
@@ -33,6 +33,17 @@ const CodeEditor = () => {
         } else {
             localStorage.setItem('level', level);
         }
+
+        // setting the level info elements inside the levelInfoDiv dynamically
+        const levelInfoDiv = document.getElementById('levelInfoDiv');
+        levelInfoDiv.textContent = "";
+        levelInfo.levelDescription.forEach((text, idx) => {
+            const p = document.createElement('p');
+            p.innerHTML = `${text}`;
+            p.setAttribute('key', idx);
+            p.classList.add('levelDesc');
+            levelInfoDiv.appendChild(p);
+        });
     }, [level]);
 
     const textareaRef = useRef();
@@ -56,7 +67,7 @@ const CodeEditor = () => {
             let tempFruits = [...fruits];
             const userFunc = new Function('fruits', `
                 ${code}
-                return fruits
+                return fruits;
             `);
             tempFruits = userFunc(tempFruits);
             setFruits(tempFruits);
@@ -103,11 +114,8 @@ const CodeEditor = () => {
 
     return (
         <section>
-            <div className="mt-4 flex flex-col gap-4">
-                {levelInfo.levelDescription.map((text, idx) =>
-                    <p key={idx} className="levelDesc">{text}</p>
-                )}
-            </div>
+            <div id="levelInfoDiv" className="mt-4 flex flex-col gap-4"></div>
+
             <div className="my-4 w-full flex flex-col font-serif">
                 <p className="font-semibold">Initial Array: </p>
                 <div className="flex justify-start items-center gap-2">

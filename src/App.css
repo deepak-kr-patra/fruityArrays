@@ -12,12 +12,25 @@
 .levelDesc {
   font-size: 15px;
   line-height: 17px;
-  font-weight: 500;
+  font-family: sans-serif;
+}
+
+.levelDesc > span {
+  background-color: #a2cefc;
+  border-bottom: 1px solid black;
+  font-weight: bold;
+  padding: 1px 2px;
+}
+
+.levelDesc > p {
+  display: inline-block;
+  background-color: #a2cefc;
+  font-weight: bold;
+  padding: 1px 2px;
 }
 
 .levelsBox {
   display: grid;
-  padding: 12px;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
   border-radius: 4px;
