@@ -50,8 +50,8 @@ const levelsInfo = {
         levelDescription: ['Once again use combination of methods to get the expected fruits array.']
     },
     7: {
-        defaultFruits: ['🍊', '🍋', '🍎', '🍌', '🍉'],
-        expectedFruits: ['🍉', '🍌', '🍎', '🍋', '🍊', '🥭'],
+        defaultFruits: ['🍇', '🍋', '🍎', '🍌', '🍉'],
+        expectedFruits: ['🍉', '🍌', '🍎', '🍋', '🍇', '🥭'],
         maxLines: 2,
         levelDescription: [
             '<span>reverse</span> method is used to reverse the elements of the array.',
@@ -73,7 +73,8 @@ const levelsInfo = {
         expectedFruits: ['🍊', '🍇', '🥭', '🍌', '🍉'],
         maxLines: 1,
         levelDescription: [
-            'Use the <span>splice</span> method to remove "🍎" and replace it with "🥭". After <p>start</p> and <p>deleteCount</p> parameters, you can pass one or more strings as parameters to replace the deleted elements.'
+            'Use the <span>splice</span> method to remove "🍎" and replace it with "🥭".',
+            'After <p>start</p> and <p>deleteCount</p> parameters, you can pass one or more strings as parameters to replace the deleted elements.'
         ]
     },
     10: {

@@ -18,20 +18,30 @@ const CodeEditor = () => {
 
     let levelInfo = getLevelInfo(level);
 
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState(localStorage.getItem(`codeLevel${level}`) || '');
     const [error, setError] = useState('');
     const [enableButton, setEnableButton] = useState(false);
 
     useEffect(() => {
+        const textarea = document.getElementById('textArea');
+        const textLength = textarea.value.length;
+
+        textarea.focus();
+
+        // set the cursor to the end of the text
+        textarea.setSelectionRange(textLength, textLength);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('level', level);
+
         setFruits(levelInfo.defaultFruits);
-        setCode('');
+        setCode(localStorage.getItem(`codeLevel${level}`) || '');
         textareaRef.current?.focus();
 
         setEnableButton(false);
         if (level <= levelsCompleted) {
             setEnableButton(true);
-        } else {
-            localStorage.setItem('level', level);
         }
 
         // setting the level info elements inside the levelInfoDiv dynamically
@@ -49,6 +59,7 @@ const CodeEditor = () => {
     const textareaRef = useRef();
     useEffect(() => {
         textareaRef.current?.focus();
+        localStorage.setItem(`codeLevel${level}`, code);
     });
 
     const checkOutput = (fruits) => {
@@ -148,6 +159,7 @@ const CodeEditor = () => {
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
                     <textarea
+                        id="textArea"
                         ref={textareaRef}
                         value={code}
                         onChange={(e) => setCode(e.target.value)}

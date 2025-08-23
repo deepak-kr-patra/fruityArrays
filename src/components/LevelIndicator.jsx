@@ -2,10 +2,12 @@ import { useRef } from "react";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 import useLevel from "../zustand/useLevel";
 import LevelsModal from "./LevelsModal";
+import { getTotalLevels } from "../utils/levelsInfo";
 
 
 const LevelIndicator = () => {
     const { level, setLevel, levelsCompleted } = useLevel();
+    const totalLevels = getTotalLevels();
 
     const levelRef = useRef(null);
 
@@ -17,7 +19,7 @@ const LevelIndicator = () => {
     };
 
     const nextLevel = () => {
-        if (level === 15 || level === levelsCompleted + 1) {
+        if (level === totalLevels || level === levelsCompleted + 1) {
             return;
         }
         setLevel(level + 1);
@@ -36,10 +38,10 @@ const LevelIndicator = () => {
                     className='bg-blue-400 hover:bg-blue-300 h-8 w-[150px] flex justify-center border-x-1 border-gray-100 items-center p-2 cursor-pointer'
                     ref={levelRef}
                 >
-                    Level {level} of 15
+                    Level {level} of {totalLevels}
                 </div>
                 <button
-                    className={`${level === 15 || level === levelsCompleted + 1 ? "opacity-50" : "hover:bg-[#9fcdff]"} bg-blue-300 h-8 flex justify-center items-center p-2 rounded-tr-xs rounded-br-xs cursor-pointer`}
+                    className={`${level === totalLevels || level === levelsCompleted + 1 ? "opacity-50" : "hover:bg-[#9fcdff]"} bg-blue-300 h-8 flex justify-center items-center p-2 rounded-tr-xs rounded-br-xs cursor-pointer`}
                     onClick={nextLevel}
                 >
                     <BiSolidRightArrow />
