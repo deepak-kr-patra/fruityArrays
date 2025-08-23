@@ -46,9 +46,10 @@ const LevelsModal = ({ levelRef }) => {
 
     const resetLevel = () => {
         setLevel(1);
-        localStorage.setItem('level', 1);
         setLevelsCompleted(0);
-        localStorage.setItem('levelsCompleted', 0);
+
+        localStorage.clear();
+
         const levelsModal = document.getElementById('levelsModal');
         levelsModal.classList.add('invisible');
     };
