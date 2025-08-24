@@ -1,3 +1,60 @@
+/* header CSS */
+.header {
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.header>span:nth-child(1) {
+  color: purple;
+}
+
+.header>span:nth-child(2) {
+  color: dodgerblue;
+}
+
+.header>span:nth-child(3) {
+  color: darkgreen;
+}
+
+.header>span:nth-child(4) {
+  color: darkmagenta;
+}
+
+.header>span:nth-child(5) {
+  color: peru;
+}
+
+.header>span:nth-child(6) {
+  color: darkorange;
+}
+
+.header > span:nth-child(7) {
+  color: transparent;
+}
+
+.header>span:nth-child(8) {
+  color: crimson;
+}
+
+.header>span:nth-child(9) {
+  color: mediumorchid;
+}
+
+.header>span:nth-child(10) {
+  color: darkblue;
+}
+
+.header>span:nth-child(11) {
+  color: red;
+}
+
+.header>span:nth-child(12) {
+  color: blue;
+}
+
+/* fruits panel CSS */
 .fruitsSection {
   background-color: #4c91a5;
   background-image:
@@ -9,26 +66,29 @@
   border: 1px solid rgba(200, 170, 120, 0.3);
 }
 
+/* level description CSS */
 .levelDesc {
   font-size: 15px;
-  line-height: 17px;
+  line-height: 19px;
   font-family: sans-serif;
 }
 
-.levelDesc > span {
+.levelDesc>span {
   background-color: #a2cefc;
   border-bottom: 1px solid black;
   font-weight: bold;
   padding: 1px 2px;
 }
 
-.levelDesc > p {
+.levelDesc>p {
   display: inline-block;
   background-color: #bfddfe;
+  line-height: 17px;
   font-weight: bold;
   padding: 1px 2px;
 }
 
+/* levels modal CSS */
 .levelsBox {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
