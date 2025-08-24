@@ -7,15 +7,18 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <div className="flex h-screen bg-blue-100 gap-4">
+    <div className="flex h-screen bg-blue-100">
       <div className="w-1/2 p-4">
         <div className='flex justify-between items-center'>
-          <h2 className='text-2xl font-extrabold'>Array Ally</h2>
+          <h2 className='header'>
+            {"FRUITS ARRAY".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
+          </h2>
           <LevelIndicator />
         </div>
         <CodeEditor />
       </div>
-      <div className="w-1/2 flex justify-center">
+
+      <div className="w-1/2 p-2">
         <FruitVisualizer />
       </div>
       <Toaster toastOptions={{ position: "bottom-right", duration: 4000 }} />
