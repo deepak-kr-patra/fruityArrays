@@ -125,36 +125,36 @@ const CodeEditor = () => {
 
     return (
         <section>
-            <div id="levelInfoDiv" className="mt-4 flex flex-col gap-4"></div>
+            <div id="levelInfoDiv" className="mt-4 flex flex-col gap-4 max-md:gap-2"></div>
 
-            <div className="my-4 w-full flex flex-col font-serif">
-                <p className="font-semibold">Initial Array: </p>
+            <div className="my-4 max-md:my-2 w-full flex flex-col font-serif">
+                <p className="font-semibold max-md:text-sm">Initial Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.defaultFruits.map((fruit, idx) => (
                         <div
                             key={idx}
-                            className="h-max text-2xl p-1 bg-yellow-100 rounded border border-yellow-400"
+                            className="demoFruit p-1 max-md:p-[3px] bg-yellow-100 border border-yellow-400"
                         >
                             {fruit}
                         </div>
                     ))}
                 </div>
             </div>
-            <div className="my-4 w-full flex flex-col font-serif">
-                <p className="font-semibold">Expected Array: </p>
+            <div className="my-4 max-md:my-2 w-full flex flex-col font-serif">
+                <p className="font-semibold max-md:text-sm">Expected Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.expectedFruits.map((fruit, idx) => (
                         <div
                             key={idx}
-                            className="h-max text-2xl p-1 bg-yellow-100 rounded border border-yellow-400"
+                            className="demoFruit p-1 max-md:p-[3px] bg-yellow-100 border border-yellow-400"
                         >
                             {fruit}
                         </div>
                     ))}
                 </div>
             </div>
-            <div className="mt-8">
-                <div className="rounded h-44 flex flex-col p-2 px-4 bg-gray-200 border-gray-400 border-dashed border-2 font-mono">
+            <div className="mt-8 max-md:mt-4">
+                <div className="code h-44 max-md:h-32 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
                     <p className="p-1">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
@@ -175,19 +175,19 @@ const CodeEditor = () => {
                 <div className="mt-2 flex justify-end items-center gap-2">
                     <button
                         onClick={runUserCode}
-                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
+                        className="button px-3 py-1.5 bg-blue-600 hover:bg-blue-700 cursor-pointer"
                     >
                         Run Code
                     </button>
                     <button
                         onClick={handleReset}
-                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded cursor-pointer"
+                        className="button px-3 py-1.5 bg-blue-600 hover:bg-blue-700 cursor-pointer"
                     >
                         Reset
                     </button>
                     <button
                         onClick={handleNext}
-                        className={`px-3 py-1.5 ${!enableButton ? "bg-blue-300" : "bg-blue-600 cursor-pointer hover:bg-blue-700"} text-white rounded`}
+                        className={`button px-3 py-1.5 ${!enableButton ? "bg-blue-300" : "bg-blue-600 cursor-pointer hover:bg-blue-700"} text-white rounded`}
                         disabled={!enableButton}
                     >
                         Next
