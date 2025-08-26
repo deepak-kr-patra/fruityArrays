@@ -4,6 +4,8 @@
   font-weight: 500;
   font-size: 30px;
   line-height: 30px;
+  font-size: clamp(20px, 3vw, 30px);
+  line-height: clamp(20px, 3vw, 30px);
 }
 
 .header>span:nth-child(1) {
@@ -19,18 +21,18 @@
 }
 
 .header>span:nth-child(4) {
-  color: darkmagenta;
+  color: darkred;
 }
 
 .header>span:nth-child(5) {
-  color: peru;
+  color: orangered;
 }
 
 .header>span:nth-child(6) {
-  color: darkorange;
+  color: peru;
 }
 
-.header > span:nth-child(7) {
+.header>span:nth-child(7) {
   color: transparent;
 }
 
@@ -66,10 +68,10 @@
   border: 1px solid rgba(200, 170, 120, 0.3);
 }
 
-/* level description CSS */
+/* level description and code editor CSS */
 .levelDesc {
-  font-size: 15px;
-  line-height: 19px;
+  font-size: clamp(10px, 1.6vw, 15px);
+  line-height: clamp(14px, 2vw, 19px);
   font-family: sans-serif;
 }
 
@@ -83,9 +85,31 @@
 .levelDesc>p {
   display: inline-block;
   background-color: #bfddfe;
-  line-height: 17px;
+  line-height: clamp(12px, 1.8vw, 17px);
   font-weight: bold;
   padding: 1px 2px;
+}
+
+.demoFruit {
+  font-size: clamp(16px, 1.5vw, 24px);
+  line-height: clamp(20px, 1.8vw, 32px);
+  border-radius: 4px;
+  height: max-content;
+}
+
+.code {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(12px, 1.6vw, 15px);
+  border: 2px dashed #99a1af;
+  border-radius: 4px;
+}
+
+.button {
+  font-size: clamp(12px, 1.6vw, 15px);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* levels modal CSS */
