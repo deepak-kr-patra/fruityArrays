@@ -6,7 +6,7 @@ const ANIM_CLEAR_MS = 450; // slightly longer than CSS animation
 
 const FruitVisualizer = () => {
 
-    const { fruits, level, resetUsed, setResetUsed } = useLevel();
+    const { fruits, level, codeResetUsed, setCodeResetUsed } = useLevel();
 
     // to not render any array until fruits array is non-empty
     const [isReady, setIsReady] = useState(false);
@@ -32,9 +32,9 @@ const FruitVisualizer = () => {
         if (levelChanged || filledFromEmpty) {
             newAnimFlags = fruits.map(() => "newLevelAnimation");
         } else {
-            if (resetUsed) {
+            if (codeResetUsed) {
                 newAnimFlags = fruits.map(() => "");
-                setResetUsed(false);
+                setCodeResetUsed(false);
             } else {
                 // Build counts of previous occurrences
                 const prevCounts = {};
@@ -76,7 +76,7 @@ const FruitVisualizer = () => {
             {isReady && fruits.map((fruit, idx) => {
                 return <div
                     key={`${level}-${idx}`}
-                    className={`${animFlags[idx]} h-max text-3xl p-2 bg-yellow-100 rounded border border-yellow-400`}
+                    className={`${animFlags[idx]} fruitItem p-2 max-md:p-1.5 bg-yellow-100 border border-yellow-400`}
                 >
                     {fruit || "❓"}
                 </div>

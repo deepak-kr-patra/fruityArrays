@@ -4,8 +4,8 @@
   font-weight: 500;
   font-size: 30px;
   line-height: 30px;
-  font-size: clamp(20px, 3vw, 30px);
-  line-height: clamp(20px, 3vw, 30px);
+  font-size: clamp(20px, 2.5vw, 30px);
+  line-height: clamp(20px, 2, 5vw, 30px);
 }
 
 .header>span:nth-child(1) {
@@ -68,6 +68,13 @@
   border: 1px solid rgba(200, 170, 120, 0.3);
 }
 
+.fruitsSection>.fruitItem {
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: clamp(24px, 2.4vw, 36px);
+  border-radius: 4px;
+  height: max-content;
+}
+
 /* level description and code editor CSS */
 .levelDesc {
   font-size: clamp(10px, 1.6vw, 15px);
@@ -90,6 +97,10 @@
   padding: 1px 2px;
 }
 
+.demoFruits {
+  margin: clamp(8px, 1vw, 16px) 0;
+}
+
 .demoFruit {
   font-size: clamp(16px, 1.5vw, 24px);
   line-height: clamp(20px, 1.8vw, 32px);
@@ -105,11 +116,27 @@
   border-radius: 4px;
 }
 
-.button {
-  font-size: clamp(12px, 1.6vw, 15px);
+.button,
+.nextBtn {
+  font-size: clamp(10px, 1.5vw, 15px);
   color: white;
   border-radius: 4px;
+  padding: 6px 10px;
+  
+  @media (max-width: 768px) {
+    padding: 5px 6px;
+  }
+}
+
+.button,
+.enabledNextBtn {
   cursor: pointer;
+  background-color: #155dfc;
+}
+
+.button:hover,
+.enabledNextBtn:hover {
+  background-color: #1447e6;
 }
 
 /* levels modal CSS */

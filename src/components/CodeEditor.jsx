@@ -13,7 +13,9 @@ const CodeEditor = () => {
         setLevelsCompleted,
         fruits,
         setFruits,
-        setResetUsed
+        setCodeResetUsed,
+        levelsResetUsed,
+        setLevelsResetUsed
     } = useLevel();
 
     let levelInfo = getLevelInfo(level);
@@ -60,6 +62,11 @@ const CodeEditor = () => {
     useEffect(() => {
         textareaRef.current?.focus();
         localStorage.setItem(`codeLevel${level}`, code);
+
+        if (levelsResetUsed) {
+            setCode('');
+            setLevelsResetUsed(false);
+        }
     });
 
     const checkOutput = (fruits) => {
@@ -93,7 +100,7 @@ const CodeEditor = () => {
         setCode('');
         setFruits(levelInfo.defaultFruits);
         setError('');
-        setResetUsed(true);
+        setCodeResetUsed(true);
         setEnableButton(false);
     };
 
@@ -127,7 +134,7 @@ const CodeEditor = () => {
         <section>
             <div id="levelInfoDiv" className="mt-4 flex flex-col gap-4 max-md:gap-2"></div>
 
-            <div className="my-4 max-md:my-2 w-full flex flex-col font-serif">
+            <div className="demoFruits w-full flex flex-col font-serif">
                 <p className="font-semibold max-md:text-sm">Initial Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.defaultFruits.map((fruit, idx) => (
@@ -140,7 +147,7 @@ const CodeEditor = () => {
                     ))}
                 </div>
             </div>
-            <div className="my-4 max-md:my-2 w-full flex flex-col font-serif">
+            <div className="demoFruits w-full flex flex-col font-serif">
                 <p className="font-semibold max-md:text-sm">Expected Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.expectedFruits.map((fruit, idx) => (
@@ -155,7 +162,7 @@ const CodeEditor = () => {
             </div>
             <div className="mt-8 max-md:mt-4">
                 <div className="code h-44 max-md:h-32 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
-                    <p className="p-1">
+                    <p className="p-0.5">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
                     <textarea
@@ -164,30 +171,30 @@ const CodeEditor = () => {
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
                         onKeyDown={(e) => keyDownValidation(e)}
-                        className="w-full p-1 outline-none resize-none bg-white"
+                        className="w-full p-0.5 outline-none resize-none bg-white"
                         spellCheck={false}
                         rows={levelInfo.maxLines}
                     />
-                    <p className="p-1">
+                    <p className="p-0.5">
                         fruits.displayInPanel();
                     </p>
                 </div>
                 <div className="mt-2 flex justify-end items-center gap-2">
                     <button
                         onClick={runUserCode}
-                        className="button px-3 py-1.5 bg-blue-600 hover:bg-blue-700 cursor-pointer"
+                        className="button"
                     >
                         Run Code
                     </button>
                     <button
                         onClick={handleReset}
-                        className="button px-3 py-1.5 bg-blue-600 hover:bg-blue-700 cursor-pointer"
+                        className="button"
                     >
                         Reset
                     </button>
                     <button
                         onClick={handleNext}
-                        className={`button px-3 py-1.5 ${!enableButton ? "bg-blue-300" : "bg-blue-600 cursor-pointer hover:bg-blue-700"} text-white rounded`}
+                        className={`nextBtn ${!enableButton ? "bg-blue-300" : "enabledNextBtn"}`}
                         disabled={!enableButton}
                     >
                         Next

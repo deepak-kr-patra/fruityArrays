@@ -4,7 +4,7 @@ import { getTotalLevels } from "../utils/levelsInfo";
 
 
 const LevelsModal = ({ levelRef }) => {
-    const { level, setLevel, levelsCompleted, setLevelsCompleted } = useLevel();
+    const { level, setLevel, levelsCompleted, setLevelsCompleted, setLevelsResetUsed } = useLevel();
     const totalLevels = getTotalLevels();
 
     const modalRef = useRef(null);
@@ -47,6 +47,7 @@ const LevelsModal = ({ levelRef }) => {
     const resetLevel = () => {
         setLevel(1);
         setLevelsCompleted(0);
+        setLevelsResetUsed(true);
 
         localStorage.clear();
 
