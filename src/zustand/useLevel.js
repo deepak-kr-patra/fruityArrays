@@ -5,10 +5,12 @@ const useLevel = create((set) => ({
     setLevel: (level) => set({ level }),
     levelsCompleted: parseInt(localStorage.getItem('levelsCompleted')) || 0,
     setLevelsCompleted: (levelsCompleted) => set({ levelsCompleted }),
-    resetUsed: false,
-    setResetUsed: (resetUsed) => set({ resetUsed }),
+    codeResetUsed: false,
+    setCodeResetUsed: (codeResetUsed) => set({ codeResetUsed }),
     fruits: [],
-    setFruits: (fruits) => set({ fruits })
+    setFruits: (fruits) => set({ fruits }),
+    levelsResetUsed: false,
+    setLevelsResetUsed: (levelsResetUsed) => set({ levelsResetUsed })
 }))
 
 export default useLevel;
