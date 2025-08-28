@@ -57,6 +57,15 @@
 }
 
 /* fruits panel CSS */
+.fruitsVisualizerContainer {
+  @media (max-width: 768px) {
+    width: 100%;
+    height: max-content;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
 .fruitsSection {
   background-color: #4c91a5;
   background-image:
@@ -77,8 +86,8 @@
 
 /* level description and code editor CSS */
 .levelDesc {
-  font-size: clamp(10px, 1.6vw, 15px);
-  line-height: clamp(14px, 2vw, 19px);
+  font-size: clamp(12px, 1.6vw, 15px);
+  line-height: clamp(16px, 2vw, 19px);
   font-family: sans-serif;
 }
 
@@ -122,7 +131,7 @@
   color: white;
   border-radius: 4px;
   padding: 6px 10px;
-  
+
   @media (max-width: 768px) {
     padding: 5px 6px;
   }
@@ -139,7 +148,19 @@
   background-color: #1447e6;
 }
 
-/* levels modal CSS */
+/* levels indicator and modal CSS */
+.levelDiv {
+  background-color: #51a2ff;
+  height: 100%;
+  width: clamp(100px, 15vw, 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f3f4f6;
+  border-width: 0 1px;
+  cursor: pointer;
+}
+
 .levelsBox {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
