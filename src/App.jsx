@@ -18,7 +18,7 @@ function App() {
         <CodeEditor />
       </div>
 
-      <div className="w-1/2 p-2 max-md:w-full">
+      <div className="w-1/2 p-2 max-md:w-full fruitsVisualizerContainer">
         <FruitVisualizer />
       </div>
       <Toaster toastOptions={{ position: "bottom-right", duration: 4000 }} />

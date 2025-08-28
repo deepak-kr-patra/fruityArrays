@@ -161,7 +161,7 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="mt-8 max-md:mt-4">
-                <div className="code h-44 max-md:h-32 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
+                <div className="code h-44 max-md:h-28 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
                     <p className="p-0.5">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
