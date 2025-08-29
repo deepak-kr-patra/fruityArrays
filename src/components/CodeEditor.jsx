@@ -161,7 +161,7 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="mt-8 max-md:mt-4">
-                <div className="code h-44 max-md:h-28 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
+                <div className="relative code h-48 max-md:h-40 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
                     <p className="p-0.5">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
@@ -178,31 +178,31 @@ const CodeEditor = () => {
                     <p className="p-0.5">
                         fruits.displayInPanel();
                     </p>
-                </div>
-                <div className="mt-2 flex justify-end items-center gap-2">
-                    <button
-                        onClick={runUserCode}
-                        className="button"
-                    >
-                        Run Code
-                    </button>
-                    <button
-                        onClick={handleReset}
-                        className="button"
-                    >
-                        Reset
-                    </button>
-                    <button
-                        onClick={handleNext}
-                        className={`nextBtn ${!enableButton ? "bg-blue-300" : "enabledNextBtn"}`}
-                        disabled={!enableButton}
-                    >
-                        Next
-                    </button>
-                </div>
-            </div>
 
-            {error && <p className="text-red-500 mt-2 font-mono">{error}</p>}
+                    <div className="absolute bottom-2 right-2 max-md:bottom-1 max-md:right-1 flex gap-2 max-md:gap-1">
+                        <button
+                            onClick={runUserCode}
+                            className="button"
+                        >
+                            Run
+                        </button>
+                        <button
+                            onClick={handleReset}
+                            className="button"
+                        >
+                            Reset
+                        </button>
+                        <button
+                            onClick={handleNext}
+                            className={`nextBtn ${!enableButton ? "bg-blue-300" : "enabledNextBtn"}`}
+                            disabled={!enableButton}
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+                {error && <p className="text-red-500 mt-2 px-2 font-mono max-md:text-sm">{error}</p>}
+            </div>
         </section>
     );
 }
