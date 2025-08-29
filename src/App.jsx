@@ -7,7 +7,7 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <div className="flex max-md:flex-col h-screen bg-blue-100">
+    <div className="flex max-md:flex-col max-md:justify-between h-screen bg-blue-100">
       <div className="w-1/2 p-4 max-md:w-full">
         <div className='flex justify-between items-center'>
           <h2 className='header'>
