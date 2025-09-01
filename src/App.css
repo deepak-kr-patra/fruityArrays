@@ -58,7 +58,7 @@
 
 /* fruits panel CSS */
 .fruitsVisualizerContainer {
-  @media (max-width: 768px) {
+  @media (width < 768px) {
     width: 100%;
     height: max-content;
   }
@@ -121,7 +121,7 @@
   font-size: clamp(12px, 1.6vw, 15px);
   border: 2px dashed #99a1af;
   border-radius: 4px;
-  @media (max-width: 768px) {
+  @media (width < 768px) {
     border-width: 1px;
   }
 }
@@ -133,7 +133,7 @@
   border-radius: 4px;
   padding: 5px 10px;
 
-  @media (max-width: 768px) {
+  @media (width < 768px) {
     padding: 2.5px 6px;
   }
 }
