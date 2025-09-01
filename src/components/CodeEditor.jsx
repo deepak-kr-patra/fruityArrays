@@ -132,7 +132,7 @@ const CodeEditor = () => {
 
     return (
         <section>
-            <div id="levelInfoDiv" className="mt-4 flex flex-col gap-4 max-md:gap-2"></div>
+            <div id="levelInfoDiv" className="mt-4 max-md:mt-0 flex flex-col gap-4 max-md:gap-2"></div>
 
             <div className="demoFruits w-full flex flex-col font-serif">
                 <p className="font-semibold max-md:text-sm">Initial Array: </p>
@@ -161,7 +161,7 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="mt-8 max-md:mt-4">
-                <div className="relative code h-48 max-md:h-40 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
+                <div className="relative code h-48 max-md:h-38 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
                     <p className="p-0.5">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
