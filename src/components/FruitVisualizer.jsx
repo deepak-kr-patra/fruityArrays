@@ -76,7 +76,7 @@ const FruitVisualizer = () => {
             {isReady && fruits.map((fruit, idx) => {
                 return <div
                     key={`${level}-${idx}`}
-                    className={`${animFlags[idx]} fruitItem p-2 max-md:p-1.5 bg-yellow-100 border border-yellow-400`}
+                    className={`${animFlags[idx]} fruitItem p-2 max-md:p-1 bg-yellow-100 border border-yellow-400`}
                 >
                     {fruit || "❓"}
                 </div>

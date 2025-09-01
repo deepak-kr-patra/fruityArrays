@@ -131,11 +131,11 @@ const CodeEditor = () => {
     };
 
     return (
-        <section>
-            <div id="levelInfoDiv" className="mt-4 flex flex-col gap-4 max-md:gap-2"></div>
+        <section className="max-h-[80vh] h-full w-full">
+            <div id="levelInfoDiv" className="mt-4 max-md:mt-0 flex flex-col gap-4 max-md:gap-2"></div>
 
-            <div className="demoFruits w-full flex flex-col font-serif">
-                <p className="font-semibold max-md:text-sm">Initial Array: </p>
+            <div className="demoFruits w-full flex flex-col font-normal">
+                <p className="font-semibold max-md:text-xs">Initial Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.defaultFruits.map((fruit, idx) => (
                         <div
@@ -147,7 +147,8 @@ const CodeEditor = () => {
                     ))}
                 </div>
             </div>
-            <div className="demoFruits w-full flex flex-col font-serif">
+
+            <div className="demoFruits w-full flex flex-col font-serifs">
                 <p className="font-semibold max-md:text-sm">Expected Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.expectedFruits.map((fruit, idx) => (
@@ -160,48 +161,51 @@ const CodeEditor = () => {
                     ))}
                 </div>
             </div>
-            <div className="mt-8 max-md:mt-4">
-                <div className="relative code h-48 max-md:h-40 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
-                    <p className="p-0.5">
-                        let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
-                    </p>
-                    <textarea
-                        id="textArea"
-                        ref={textareaRef}
-                        value={code}
-                        onChange={(e) => setCode(e.target.value)}
-                        onKeyDown={(e) => keyDownValidation(e)}
-                        className="w-full p-0.5 outline-none resize-none bg-white"
-                        spellCheck={false}
-                        rows={levelInfo.maxLines}
-                    />
-                    <p className="p-0.5">
-                        fruits.displayInPanel();
-                    </p>
 
-                    <div className="absolute bottom-2 right-2 max-md:bottom-1 max-md:right-1 flex gap-2 max-md:gap-1">
-                        <button
-                            onClick={runUserCode}
-                            className="button"
-                        >
-                            Run
-                        </button>
-                        <button
-                            onClick={handleReset}
-                            className="button"
-                        >
-                            Reset
-                        </button>
-                        <button
-                            onClick={handleNext}
-                            className={`nextBtn ${!enableButton ? "bg-blue-300" : "enabledNextBtn"}`}
-                            disabled={!enableButton}
-                        >
-                            Next
-                        </button>
+            <div className="flex flex-col justify-end flex-1 bg-amber-200xxx">
+                <div className="w-full mt-8 max-md:mt-4">
+                    <div className="relative code h-48 max-md:h-38 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
+                        <p className="p-0.5">
+                            let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
+                        </p>
+                        <textarea
+                            id="textArea"
+                            ref={textareaRef}
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
+                            onKeyDown={(e) => keyDownValidation(e)}
+                            className="w-full p-0.5 outline-none resize-none bg-white"
+                            spellCheck={false}
+                            rows={levelInfo.maxLines}
+                        />
+                        <p className="p-0.5">
+                            fruits.displayInPanel();
+                        </p>
+
+                        <div className="absolute bottom-2 right-2 max-md:bottom-1 max-md:right-1 flex gap-2 max-md:gap-1">
+                            <button
+                                onClick={runUserCode}
+                                className="button"
+                            >
+                                Run
+                            </button>
+                            <button
+                                onClick={handleReset}
+                                className="button"
+                            >
+                                Reset
+                            </button>
+                            <button
+                                onClick={handleNext}
+                                className={`nextBtn ${!enableButton ? "bg-blue-300" : "enabledNextBtn"}`}
+                                disabled={!enableButton}
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
+                    {error && <p className="text-red-500 mt-2 px-2 font-mono max-md:text-sm">{error}</p>}
                 </div>
-                {error && <p className="text-red-500 mt-2 px-2 font-mono max-md:text-sm">{error}</p>}
             </div>
         </section>
     );

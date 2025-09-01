@@ -56,11 +56,20 @@
   color: blue;
 }
 
+/* .codeEditorBox {
+  @media not all and (max-width: 768px) {
+    max-height: 80vh;
+  }
+} */
+
 /* fruits panel CSS */
 .fruitsVisualizerContainer {
   @media (max-width: 768px) {
-    width: 100%;
     height: max-content;
+  }
+  @media not all and (max-width: 768px) {
+    height: 100%;
+    order: 10;
   }
 }
 
