@@ -72,7 +72,7 @@ const FruitVisualizer = () => {
     }, [fruits]);
 
     return (
-        <div className="fruitsSection w-full flex flex-wrap justify-center gap-2 bg-white p-4 rounded shadow h-full">
+        <div className="fruitsSection w-full flex flex-wrap justify-center gap-2 bg-white p-4 max-md:p-3 rounded shadow h-full">
             {isReady && fruits.map((fruit, idx) => {
                 return <div
                     key={`${level}-${idx}`}
