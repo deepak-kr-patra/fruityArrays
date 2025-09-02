@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 const CodeEditor = () => {
 
     const {
+        screenWidth,
         level,
         setLevel,
         levelsCompleted,
@@ -39,7 +40,7 @@ const CodeEditor = () => {
 
         setFruits(levelInfo.defaultFruits);
         setCode(localStorage.getItem(`codeLevel${level}`) || '');
-        textareaRef.current?.focus();
+        // textareaRef.current?.focus();
 
         setEnableButton(false);
         if (level <= levelsCompleted) {
@@ -59,8 +60,11 @@ const CodeEditor = () => {
     }, [level]);
 
     const textareaRef = useRef();
+    // intentionally kept this useEffect below previous one so 'code' doesn't get same value as previous level
     useEffect(() => {
-        textareaRef.current?.focus();
+        if (screenWidth >= 768) {
+            textareaRef.current?.focus();
+        }
         localStorage.setItem(`codeLevel${level}`, code);
 
         if (levelsResetUsed) {
@@ -131,11 +135,11 @@ const CodeEditor = () => {
     };
 
     return (
-        <section>
-            <div id="levelInfoDiv" className="mt-4 max-md:mt-0 flex flex-col gap-4 max-md:gap-2"></div>
+        <section className="flex flex-col justify-start flex-1 max-md:h-full">
+            <div id="levelInfoDiv" className="mt-4 max-md:mt-0 flex flex-col gap-4 max-lg:gap-2"></div>
 
             <div className="demoFruits w-full flex flex-col font-serif">
-                <p className="font-semibold max-md:text-sm">Initial Array: </p>
+                <p className="font-semibold max-lg:text-sm">Initial Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.defaultFruits.map((fruit, idx) => (
                         <div
@@ -148,7 +152,7 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="demoFruits w-full flex flex-col font-serif">
-                <p className="font-semibold max-md:text-sm">Expected Array: </p>
+                <p className="font-semibold max-lg:text-sm">Expected Array: </p>
                 <div className="flex justify-start items-center gap-2">
                     {levelInfo.expectedFruits.map((fruit, idx) => (
                         <div
@@ -160,8 +164,8 @@ const CodeEditor = () => {
                     ))}
                 </div>
             </div>
-            <div className="mt-8 max-md:mt-4">
-                <div className="relative code h-48 max-md:h-38 p-2 px-4 max-md:p-1 max-md:px-2 bg-gray-200 font-mono">
+            <div className="mt-4 flex flex-col justify-end flex-1">
+                <div className="codeBox relative flex flex-col h-48 max-md:h-38 p-2 max-lg:p-1 bg-gray-200">
                     <p className="p-0.5">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
@@ -179,29 +183,32 @@ const CodeEditor = () => {
                         fruits.displayInPanel();
                     </p>
 
-                    <div className="absolute bottom-2 right-2 max-md:bottom-1 max-md:right-1 flex gap-2 max-md:gap-1">
-                        <button
-                            onClick={runUserCode}
-                            className="button"
-                        >
-                            Run
-                        </button>
-                        <button
-                            onClick={handleReset}
-                            className="button"
-                        >
-                            Reset
-                        </button>
-                        <button
-                            onClick={handleNext}
-                            className={`nextBtn ${!enableButton ? "bg-blue-300" : "enabledNextBtn"}`}
-                            disabled={!enableButton}
-                        >
-                            Next
-                        </button>
+                    <div className="flex justify-between items-end flex-1">
+                        {<p className="error text-red-500">{error}</p>}
+                        <div className="flex gap-2 max-lg:gap-1">
+                            <button
+                                onClick={runUserCode}
+                                className="button"
+                            >
+                                Run
+                            </button>
+                            <button
+                                onClick={handleReset}
+                                className="button"
+                            >
+                                Reset
+                            </button>
+                            <button
+                                onClick={handleNext}
+                                className={`nextBtn ${!enableButton ? "bg-blue-300" : "enabledNextBtn"}`}
+                                disabled={!enableButton}
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
                 </div>
-                {error && <p className="text-red-500 mt-2 px-2 font-mono max-md:text-sm">{error}</p>}
+                <p className="footer mt-2">created by Deepak</p>
             </div>
         </section>
     );

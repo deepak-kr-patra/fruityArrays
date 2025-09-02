@@ -17,7 +17,7 @@ function App() {
     <>
       {screenWidth >= 768 && 
       <div className="flex max-md:flex-col max-md:justify-between h-screen bg-blue-100">
-        <div className="w-1/2 p-4 max-md:w-full">
+        <div className="w-[55%] h-full flex flex-col p-4 max-md:w-full">
           <div className='flex justify-between items-center'>
             <h2 className='header'>
               {"FRUITS ARRAY".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
@@ -27,15 +27,15 @@ function App() {
           <CodeEditor />
         </div>
 
-        <div className="w-1/2 p-2 max-md:w-full fruitsVisualizerContainer">
+        <div className="w-[45%] p-2 pl-0 max-md:w-full max-md:h-max">
           <FruitVisualizer />
         </div>
         <Toaster toastOptions={{ position: "bottom-right", duration: 4000 }} />
       </div>}
 
       {screenWidth < 768 && 
-      <div className="flex flex-col h-screen bg-blue-100">
-        <div className="p-4 pb-0 w-full">
+      <div className="flex flex-col h-dvh bg-blue-100">
+        <div className="p-2 pb-0 w-full">
           <div className='flex justify-between items-center'>
             <h2 className='header'>
               {"FRUITS ARRAY".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
@@ -44,14 +44,14 @@ function App() {
           </div>
         </div>
 
-        <div className="p-2 w-full fruitsVisualizerContainer">
+        <div className="p-2 w-full max-md:h-max">
           <FruitVisualizer />
         </div>
 
-        <div className="p-2 pt-0 w-full ">
+        <div className="p-2 pt-0 w-full flex-1">
           <CodeEditor />
         </div>
-        <Toaster toastOptions={{ position: "top-center", duration: 4000 }} />
+        <Toaster toastOptions={{ position: "bottom-right", duration: 4000 }} />
       </div>}
     </>
   )

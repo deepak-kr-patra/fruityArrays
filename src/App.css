@@ -57,12 +57,12 @@
 }
 
 /* fruits panel CSS */
-.fruitsVisualizerContainer {
+/* .fruitsVisualizerContainer {
   @media (width < 768px) {
     width: 100%;
     height: max-content;
   }
-}
+} */
 
 .fruitsSection {
   background-color: #4c91a5;
@@ -73,6 +73,7 @@
   background-size: 20px 20px;
   border-radius: 8px;
   border: 1px solid rgba(200, 170, 120, 0.3);
+  align-content: start;
 }
 
 .fruitsSection>.fruitItem {
@@ -105,7 +106,7 @@
 }
 
 .demoFruits {
-  margin: clamp(8px, 1vw, 16px) 0;
+  margin: clamp(8px, 1vw, 16px) 0 0 0;
 }
 
 .demoFruit {
@@ -115,15 +116,23 @@
   height: max-content;
 }
 
-.code {
+.codeBox {
   display: flex;
   flex-direction: column;
   font-size: clamp(12px, 1.6vw, 15px);
   border: 2px dashed #99a1af;
   border-radius: 4px;
+  font-family: "Fira Code", monospace;
+  font-optical-sizing: auto;
+
   @media (width < 768px) {
     border-width: 1px;
   }
+}
+
+.error {
+  font-size: clamp(12px, 1.6vw, 15px);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .button,
@@ -131,9 +140,10 @@
   font-size: clamp(10px, 1.5vw, 15px);
   color: white;
   border-radius: 4px;
+  height: max-content;
   padding: 5px 10px;
 
-  @media (width < 768px) {
+  @media (width < 1024px) {
     padding: 2.5px 6px;
   }
 }
@@ -144,9 +154,17 @@
   background-color: #155dfc;
 }
 
-.button:hover,
-.enabledNextBtn:hover {
-  background-color: #1447e6;
+@media (hover: hover) {
+
+  .button:hover,
+  .enabledNextBtn:hover {
+    background-color: #1447e6;
+  }
+}
+
+.footer {
+  align-self: center;
+  font-size: clamp(12px, 1.6vw, 15px);
 }
 
 /* levels indicator and modal CSS */
@@ -184,7 +202,13 @@
   cursor: pointer;
 }
 
-.levelCircle:hover,
+@media (hover: hover) {
+
+  .levelCircle:hover {
+    border: 2px solid #f9fbfb;
+  }
+}
+
 .active {
   border: 2px solid #f9fbfb;
 }
