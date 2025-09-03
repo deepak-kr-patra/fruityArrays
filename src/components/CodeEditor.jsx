@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getLevelInfo } from "../utils/levelsInfo";
-import useLevel from "../zustand/useLevel";
+import useGlobalStates from "../zustand/useGlobalStates";
 import toast from 'react-hot-toast';
 
 
@@ -17,7 +17,7 @@ const CodeEditor = () => {
         setCodeResetUsed,
         levelsResetUsed,
         setLevelsResetUsed
-    } = useLevel();
+    } = useGlobalStates();
 
     let levelInfo = getLevelInfo(level);
 
