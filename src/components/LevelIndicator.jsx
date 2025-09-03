@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
-import useLevel from "../zustand/useLevel";
+import useGlobalStates from "../zustand/useGlobalStates";
 import LevelsModal from "./LevelsModal";
 import { getTotalLevels } from "../utils/levelsInfo";
 
 
 const LevelIndicator = () => {
-    const { level, setLevel, levelsCompleted } = useLevel();
+    const { level, setLevel, levelsCompleted } = useGlobalStates();
     const totalLevels = getTotalLevels();
 
     const levelRef = useRef(null);

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-const useLevel = create((set) => ({
+const useGlobalStates = create((set) => ({
     screenWidth: window.innerWidth,
     setScreenWidth: (screenWidth) => set({ screenWidth }),
     level: parseInt(localStorage.getItem('level')) || 1,
@@ -15,4 +15,4 @@ const useLevel = create((set) => ({
     setLevelsResetUsed: (levelsResetUsed) => set({ levelsResetUsed })
 }))
 
-export default useLevel;
+export default useGlobalStates;

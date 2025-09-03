@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import useLevel from "../zustand/useLevel"
+import useGlobalStates from "../zustand/useGlobalStates"
 import { getTotalLevels } from "../utils/levelsInfo";
 
 
 const LevelsModal = ({ levelRef }) => {
-    const { level, setLevel, levelsCompleted, setLevelsCompleted, setLevelsResetUsed } = useLevel();
+    const { level, setLevel, levelsCompleted, setLevelsCompleted, setLevelsResetUsed } = useGlobalStates();
     const totalLevels = getTotalLevels();
 
     const modalRef = useRef(null);

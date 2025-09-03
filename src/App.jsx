@@ -3,11 +3,11 @@ import CodeEditor from './components/CodeEditor';
 import FruitVisualizer from './components/FruitVisualizer';
 import LevelIndicator from './components/LevelIndicator';
 import { Toaster } from 'react-hot-toast';
-import useLevel from './zustand/useLevel';
+import useGlobalStates from './zustand/useGlobalStates';
 
 
 function App() {
-  const { screenWidth, setScreenWidth } = useLevel();
+  const { screenWidth, setScreenWidth } = useGlobalStates();
 
   window.onresize = () => {
     setScreenWidth(window.innerWidth);

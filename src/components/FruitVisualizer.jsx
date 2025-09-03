@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import useLevel from "../zustand/useLevel";
+import useGlobalStates from "../zustand/useGlobalStates";
 
 
 const ANIM_CLEAR_MS = 450; // slightly longer than CSS animation
 
 const FruitVisualizer = () => {
 
-    const { fruits, level, codeResetUsed, setCodeResetUsed } = useLevel();
+    const { fruits, level, codeResetUsed, setCodeResetUsed } = useGlobalStates();
 
     // to not render any array until fruits array is non-empty
     const [isReady, setIsReady] = useState(false);
