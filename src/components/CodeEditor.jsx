@@ -38,9 +38,13 @@ const CodeEditor = () => {
     useEffect(() => {
         localStorage.setItem('level', level);
 
-        setFruits(levelInfo.defaultFruits);
+        if (level <= levelsCompleted) {
+            setFruits(levelInfo.expectedFruits);
+        } else {
+            setFruits(levelInfo.defaultFruits);
+        }
         setCode(localStorage.getItem(`codeLevel${level}`) || '');
-        // textareaRef.current?.focus();
+        setError('');
 
         setEnableButton(false);
         if (level <= levelsCompleted) {
@@ -75,10 +79,14 @@ const CodeEditor = () => {
 
     const checkOutput = (fruits) => {
         if (JSON.stringify(levelInfo.expectedFruits) === JSON.stringify(fruits)) {
-            toast.success("Well done!");
-            localStorage.setItem('levelsCompleted', levelsCompleted + 1);
-            setLevelsCompleted(levelsCompleted + 1);
             setEnableButton(true);
+            if (level > levelsCompleted) {
+                toast.success("Well done!");
+                localStorage.setItem('levelsCompleted', levelsCompleted + 1);
+                setLevelsCompleted(levelsCompleted + 1);
+            } else {
+                toast.success("Level already completed.");
+            }
         } else {
             toast.error("Nope! try Again.");
         }
