@@ -2,10 +2,8 @@
 .header {
   font-family: "Luckiest Guy", cursive;
   font-weight: 500;
-  font-size: 30px;
-  line-height: 30px;
   font-size: clamp(20px, 2.5vw, 30px);
-  line-height: clamp(20px, 2, 5vw, 30px);
+  line-height: clamp(20px, 2.5vw, 30px);
 }
 
 .header>span:nth-child(1) {
@@ -258,4 +256,20 @@
     transform: scale(1) translateY(0);
     opacity: 1;
   }
+}
+
+/* Congratulations page CSS */
+#congratulationsPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 500;
+  font-size: clamp(20px, 5vw, 50px);
+  line-height: clamp(20px, 5vw, 50px);
+}
+
+.fruitsLine {
+  
 }
