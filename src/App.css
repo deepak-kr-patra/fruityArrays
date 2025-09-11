@@ -270,6 +270,100 @@
   line-height: clamp(20px, 5vw, 50px);
 }
 
-.fruitsLine {
-  
+.message>span:nth-child(1) {
+  color: purple;
+}
+
+.message>span:nth-child(2) {
+  color: dodgerblue;
+}
+
+.message>span:nth-child(3) {
+  color: darkgreen;
+}
+
+.message>span:nth-child(4) {
+  color: darkred;
+}
+
+.message>span:nth-child(5) {
+  color: orangered;
+}
+
+.message>span:nth-child(6) {
+  color: peru;
+}
+
+.message>span:nth-child(7) {
+  color: limegreen;
+}
+
+.message>span:nth-child(8) {
+  color: crimson;
+}
+
+.message>span:nth-child(9) {
+  color: mediumorchid;
+}
+
+.message>span:nth-child(10) {
+  color: darkblue;
+}
+
+.message>span:nth-child(11) {
+  color: red;
+}
+
+.message>span:nth-child(12) {
+  color: blue;
+}
+
+.message>span:nth-child(13) {
+  color: mediumvioletred;
+}
+
+.message>span:nth-child(14) {
+  color: olivedrab;
+}
+
+.message>span:nth-child(15) {
+  color: mediumblue;
+}
+
+.fruitsBeltTop {
+  height: clamp(22px, 4.2vw, 55px);
+  animation: moveLeft 15s linear infinite;
+}
+
+.fruitsBeltBottom {
+  height: clamp(22px, 4.2vw, 55px);
+  animation: moveRight 15s linear infinite;
+}
+
+.track {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: clamp(20px, 4vw, 50px);
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-100vw);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
