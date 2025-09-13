@@ -264,10 +264,30 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.message {
   font-family: "Luckiest Guy", cursive;
   font-weight: 500;
   font-size: clamp(20px, 5vw, 50px);
   line-height: clamp(20px, 5vw, 50px);
+}
+
+.congratsBtn {
+  font-size: clamp(10px, 1.5vw, 15px);
+  color: white;
+  border-radius: 4px;
+  height: max-content;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #155dfc;
+}
+
+@media (hover: hover) {
+
+  .congratsBtn:hover {
+    background-color: #1447e6;
+  }
 }
 
 .message>span:nth-child(1) {

@@ -24,9 +24,15 @@ const Congratulations = () => {
                 </div>
             </div>
 
-            <h2 className="message">
-                {"CONGRATULATIONS".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
-            </h2>
+            <div className="flex flex-col justify-center items-center gap-2">
+                <h2 className="message">
+                    {"CONGRATULATIONS".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
+                </h2>
+                <div className="buttons flex gap-2">
+                    <button className="congratsBtn">Play Again</button>
+                    <button className="congratsBtn">Back</button>
+                </div>
+            </div>
 
             <div className="w-screen overflow-hidden">
                 <div className="flex w-[200%] fruitsBeltBottom">
