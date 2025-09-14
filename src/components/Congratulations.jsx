@@ -1,6 +1,25 @@
+import useGlobalStates from "../zustand/useGlobalStates";
+
+
 const Congratulations = () => {
+    const { setLevel, setLevelsCompleted, setLevelsResetUsed } = useGlobalStates();
+
+    const resetGame = () => {
+        setLevel(1);
+        setLevelsCompleted(0);
+        setLevelsResetUsed(true);
+
+        localStorage.clear();
+
+        goBack();
+    };
+
+    const goBack = () => {
+        document.getElementById('congratulationsSection').classList.remove('showCongratsSection');
+    };
+
     return (
-        <section id="congratulationsPage" className="w-screen h-dvh p-12 bg-blue-100 ">
+        <section id="congratulationsSection" className="w-screen h-dvh p-12 bg-blue-100 ">
             <div className="w-screen overflow-hidden">
                 <div className="flex w-[200%] fruitsBeltTop">
                     <div className="w-screen flex justify-around items-center track">
@@ -29,8 +48,8 @@ const Congratulations = () => {
                     {"CONGRATULATIONS".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
                 </h2>
                 <div className="buttons flex gap-2">
-                    <button className="congratsBtn">Play Again</button>
-                    <button className="congratsBtn">Back</button>
+                    <button onClick={resetGame} className="congratsBtn">Play Again</button>
+                    <button onClick={goBack} className="congratsBtn">Back</button>
                 </div>
             </div>
 
