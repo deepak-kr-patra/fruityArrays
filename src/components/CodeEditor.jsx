@@ -80,6 +80,12 @@ const CodeEditor = () => {
     const checkOutput = (fruits) => {
         if (JSON.stringify(levelInfo.expectedFruits) === JSON.stringify(fruits)) {
             setEnableButton(true);
+            // show congrats modal after little delay
+            if(level === 15) {
+                setTimeout(() => {
+                    document.getElementById('congratulationsSection').classList.add('showCongratsSection');
+                }, 3000);
+            }
             if (level > levelsCompleted) {
                 toast.success("Well done!");
                 localStorage.setItem('levelsCompleted', levelsCompleted + 1);
@@ -173,7 +179,7 @@ const CodeEditor = () => {
                 </div>
             </div>
             <div className="mt-4 flex flex-col justify-end flex-1">
-                <div className="codeBox relative flex flex-col h-48 max-md:h-38 p-2 max-lg:p-1 bg-gray-200">
+                <div className="codeBox flex flex-col h-48 max-md:h-38 p-2 max-lg:p-1 bg-gray-200">
                     <p className="p-0.5">
                         let fruits = [{levelInfo.defaultFruits.map(f => `"${f}"`).join(', ')}];
                     </p>
