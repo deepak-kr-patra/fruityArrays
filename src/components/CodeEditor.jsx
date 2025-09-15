@@ -80,11 +80,16 @@ const CodeEditor = () => {
     const checkOutput = (fruits) => {
         if (JSON.stringify(levelInfo.expectedFruits) === JSON.stringify(fruits)) {
             setEnableButton(true);
-            // show congrats modal after little delay
-            if(level === 15) {
+            // show congrats section after some animations
+            if (level === 15) {
+                const fruitsItems = document.querySelectorAll('.fruitItem');
+                fruitsItems.forEach((fruit, idx) => {
+                    fruit.classList.add('flyUp');
+                    fruit.style.animationDelay = `${idx * 0.1}s`;
+                });
                 setTimeout(() => {
                     document.getElementById('congratulationsSection').classList.add('showCongratsSection');
-                }, 3000);
+                }, 5000);
             }
             if (level > levelsCompleted) {
                 toast.success("Well done!");
@@ -222,7 +227,10 @@ const CodeEditor = () => {
                         </div>
                     </div>
                 </div>
-                <p className="footer mt-2">created by Deepak</p>
+                <p className="footer mt-2">
+                    2025 &copy; 
+                    created by <a target="_blank" href="https://deepakpatra.netlify.app" className="myName">Deepak</a>
+                </p>
             </div>
         </section>
     );
