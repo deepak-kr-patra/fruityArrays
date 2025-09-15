@@ -73,14 +73,14 @@ const FruitVisualizer = () => {
 
     return (
         <div className="fruitsSection w-full h-full flex flex-wrap justify-center gap-2 bg-white p-4 max-md:p-3 rounded shadow">
-            {isReady && fruits.map((fruit, idx) => {
-                return <div
+            {isReady && fruits.map((fruit, idx) => (
+                <div
                     key={`${level}-${idx}`}
                     className={`${animFlags[idx]} fruitItem p-2 max-md:p-1 bg-yellow-100 border border-yellow-400`}
                 >
                     {fruit || "❓"}
                 </div>
-            })}
+            ))}
         </div>
     );
 }

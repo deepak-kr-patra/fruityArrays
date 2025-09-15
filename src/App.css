@@ -51,6 +51,10 @@
 }
 
 .header>span:nth-child(12) {
+  color: teal;
+}
+
+.header>span:nth-child(13) {
   color: blue;
 }
 
@@ -72,6 +76,78 @@
   line-height: clamp(24px, 2.4vw, 36px);
   border-radius: 4px;
   height: max-content;
+  background-color: #fef9c2;
+}
+
+.flyUp {
+  animation: flyUp 5.2s ease 1;
+}
+
+/* fruits animations CSS */
+.newFruitAnimation {
+  animation: popIn 0.4s ease-out;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.newLevelAnimation {
+  animation: dropDown 0.4s ease-out;
+}
+
+@keyframes dropDown {
+  0% {
+    transform: scale(0.5) translateY(-250px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyUp {
+  0% {
+    background-color: #fef9c2;
+    transform: scale(1);
+  }
+
+  30% {
+    background-color: #fef9c2;
+    transform: scale(1);
+  }
+
+  35% {
+    background-color: white;
+    transform: scale(1.04);
+  }
+
+  40% {
+    background-color: #fef9c2;
+    transform: scale(1);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  70% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-100px);
+  }
 }
 
 /* level description and code editor CSS */
@@ -149,19 +225,27 @@
   background-color: #155dfc;
 }
 
+.footer {
+  align-self: center;
+  font-size: clamp(12px, 1.6vw, 15px);
+  color: #555;
+  font-weight: 500;
+}
+
+.footer>.myName {
+  text-decoration: underline;
+}
+
 @media (hover: hover) {
 
   .button:hover,
   .enabledNextBtn:hover {
     background-color: #1447e6;
   }
-}
 
-.footer {
-  align-self: center;
-  font-size: clamp(12px, 1.6vw, 15px);
-  color: #555;
-  font-weight: 500;
+  .footer>.myName:hover {
+    color: mediumblue;
+  }
 }
 
 /* levels indicator and modal CSS */
@@ -229,39 +313,6 @@
 
 .passedLevel {
   background-color: #8ec5ff;
-}
-
-/* animations CSS */
-.newFruitAnimation {
-  animation: popIn 0.4s ease-out;
-}
-
-@keyframes popIn {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.newLevelAnimation {
-  animation: dropDown 0.4s ease-out;
-}
-
-@keyframes dropDown {
-  0% {
-    transform: scale(0.5) translateY(-250px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
 }
 
 /* Congratulations page CSS */

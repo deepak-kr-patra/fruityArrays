@@ -22,7 +22,7 @@ function App() {
           <div className="w-[55%] h-full flex flex-col p-4">
             <div className='flex justify-between items-center'>
               <h2 className='header'>
-                {"FRUITS ARRAY".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
+                {"FRUITY ARRAYS".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
               </h2>
               <LevelIndicator />
             </div>
@@ -40,7 +40,7 @@ function App() {
           <div className="p-2 pb-0 w-full">
             <div className='flex justify-between items-center'>
               <h2 className='header'>
-                {"FRUITS ARRAY".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
+                {"FRUITY ARRAYS".split('').map((ch, idx) => <span key={idx}>{ch}</span>)}
               </h2>
               <LevelIndicator />
             </div>

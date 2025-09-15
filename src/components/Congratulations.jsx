@@ -16,6 +16,8 @@ const Congratulations = () => {
 
     const goBack = () => {
         document.getElementById('congratulationsSection').classList.remove('showCongratsSection');
+        const fruitItems = document.querySelectorAll('.fruitItem');
+        fruitItems.forEach((fruit) => fruit.classList.remove('flyUp'));
     };
 
     return (
