@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getLevelInfo } from "../utils/levelsInfo";
+import { getLevelInfo, getTotalLevels } from "../utils/levelsInfo";
 import useGlobalStates from "../zustand/useGlobalStates";
 import toast from 'react-hot-toast';
 
@@ -20,6 +20,7 @@ const CodeEditor = () => {
     } = useGlobalStates();
 
     let levelInfo = getLevelInfo(level);
+    let totalLevels = getTotalLevels();
 
     const [code, setCode] = useState(localStorage.getItem(`codeLevel${level}`) || '');
     const [error, setError] = useState('');
@@ -47,7 +48,7 @@ const CodeEditor = () => {
         setError('');
 
         setEnableButton(false);
-        if (level <= levelsCompleted) {
+        if (level <= levelsCompleted && level < totalLevels) {
             setEnableButton(true);
         }
 
@@ -79,7 +80,6 @@ const CodeEditor = () => {
 
     const checkOutput = (fruits) => {
         if (JSON.stringify(levelInfo.expectedFruits) === JSON.stringify(fruits)) {
-            setEnableButton(true);
             // show congrats section after some animations
             if (level === 15) {
                 const fruitsItems = document.querySelectorAll('.fruitItem');
@@ -90,7 +90,10 @@ const CodeEditor = () => {
                 setTimeout(() => {
                     document.getElementById('congratulationsSection').classList.add('showCongratsSection');
                 }, 5000);
+            } else {
+                setEnableButton(true);
             }
+
             if (level > levelsCompleted) {
                 toast.success("Well done!");
                 localStorage.setItem('levelsCompleted', levelsCompleted + 1);
@@ -228,7 +231,7 @@ const CodeEditor = () => {
                     </div>
                 </div>
                 <p className="footer mt-2">
-                    2025 &copy; 
+                    2025 &copy;
                     created by <a target="_blank" href="https://deepakpatra.netlify.app" className="myName">Deepak</a>
                 </p>
             </div>
