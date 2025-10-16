@@ -1,12 +1,41 @@
-# React + Vite
+# 🍉 Fruity Arrays
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Fruity Arrays** is a fun, interactive web app to learn and practice **JavaScript array methods** — like `push()`, `pop()`, `shift()`, and more — through visual feedback and real-time code execution.  
+Whether you're a beginner learning arrays or a developer testing your skills, this mini-game makes it engaging and satisfying! 🚀
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎮 Live Demo  
+👉 [https://fruityarrays.netlify.app/](https://fruityarrays.netlify.app/)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🖼️ Preview
+
+<!-- Replace the file path below with your screenshot -->
+![Fruity Arrays Screenshot](./public/preview.png)
+
+---
+
+## 🧠 Features
+
+- 💡 Learn core **JavaScript array methods** interactively  
+- 🍎 Visual feedback for every code change  
+- 🔄 Animations for array updates (push, pop, shift, unshift, etc.)  
+- 🧩 Multiple levels to test your logic and progress  
+- 💬 Instant success/error messages via `react-hot-toast`  
+- ⚡ Built with modern React tools and state management  
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** (with Vite)
+- **Zustand** – global state management
+- **Tailwind CSS** – fast and flexible styling
+- **React Hot Toast** – sleek alert system
+- **React Icons** – clean and lightweight icons
+
+---
+
+### 🌟 Made with love (and fruits) by [Deepak](https://github.com/deepak-kr-patra)
