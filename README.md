@@ -6,7 +6,7 @@ Whether you're a beginner learning arrays or a developer testing your skills, th
 ---
 
 ## 🎮 Live Demo  
-👉 [https://fruityarrays.netlify.app/](https://fruityarrays.netlify.app/)
+👉 [https://fruityarrays.netlify.app/](https://fruityarrays.netlify.app/){:target="_blank"}
 
 ---
 
@@ -38,4 +38,4 @@ Whether you're a beginner learning arrays or a developer testing your skills, th
 
 ---
 
-### 🌟 Made with love (and fruits) by [Deepak](https://github.com/deepak-kr-patra)
+### 🌟 Made with love (and fruits) by [Deepak](https://github.com/deepak-kr-patra){:target="_blank"} 
