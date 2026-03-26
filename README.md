@@ -5,7 +5,7 @@ Whether you're a beginner learning arrays or a developer testing your skills, th
 
 ---
 
-## 🎮 Live Demo  
+## 🎮 Live Game  
 👉 [https://fruityarrays.netlify.app/](https://fruityarrays.netlify.app/)
 
 ---
